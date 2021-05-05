@@ -1,14 +1,23 @@
 import pygame
+from World import World
 
 pygame.init()
 
-win = pygame.display.set_mode((500, 500))
+HEIGHT = 500
+WIDTH = 800
+
+win = pygame.display.set_mode((WIDTH, HEIGHT))
 run = True
+
+#Hintergrund laden
+backgroundWorld = World(WIDTH,HEIGHT)
 
 while run:
     # bestimmt die Frames per second
-    pygame.time.delay(100)
+    pygame.time.delay(60)
 
+    #Background
+    backgroundWorld.placeBackground(win)
     # Auf die angaben des Benutzers reagieren
     for event in pygame.event.get():
 
