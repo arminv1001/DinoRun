@@ -1,6 +1,9 @@
+import random
+
 import pygame
 from World import World
 from Player import Player
+from Fence import Fence
 
 pygame.init()
 
@@ -21,7 +24,7 @@ clock = pygame.time.Clock()
 # Fußboden bei 350
 backgroundWorld = World(WIDTH, HEIGHT, DIFFICULTY)
 man = Player(WIDTH / 2, HEIGHT - 150, DIFFICULTY, DIFFICULTY)
-
+fence = Fence(WIDTH, HEIGHT, DIFFICULTY)
 '''
 Gameloop Funktionen
 '''
@@ -31,6 +34,7 @@ def drawGame(window):
     backgroundWorld.placeBackground(window)
     window.blit(backgroundWorld.background, (backgroundWorld.background1X, 0))
     window.blit(backgroundWorld.background, (backgroundWorld.background2X, 0))
+    fence.placeFence(window)
     man.draw(window)
     pygame.display.update()
 
