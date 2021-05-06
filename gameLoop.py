@@ -1,26 +1,30 @@
 import pygame
 from World import World
 
+def drawGame(window):
+    backgroundWorld.placeBackground(window)
+    window.blit(backgroundWorld.background, (backgroundWorld.background1X, 0))
+    window.blit(backgroundWorld.background, (backgroundWorld.background2X, 0))
+    pygame.display.update()
+
 pygame.init()
 
 HEIGHT = 500
 WIDTH = 800
+DIFFICULTY = 2
 
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 run = True
 clock = pygame.time.Clock()
 #Hintergrund laden
-# TODO Schwierigkeit mit der Zeit erhöhen oder am anfang aushwälen?
-backgroundWorld = World(WIDTH,HEIGHT,1)
+backgroundWorld = World(WIDTH,HEIGHT,DIFFICULTY)
 
 while run:
-    # TODO pygame.time.delay(60) brauchst du das??? -> wenn ja dann probiers mal mit dem clock tick,
-    #  weil glaub des war die falsche Funktion die du da verwendet hast
     # bestimmt die Frames per second
-    # clock.tick(60)
+    clock.tick(60)
 
     #Background
-    backgroundWorld.placeBackground(win)
+    drawGame(win)
     # Auf die angaben des Benutzers reagieren
     for event in pygame.event.get():
 
