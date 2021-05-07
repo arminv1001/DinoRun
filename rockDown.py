@@ -1,17 +1,18 @@
 import random
+
 import pygame
 
 
-class Fence:
+class rockDown:
     def __init__(self, WIDTH, HEIGHT, difficulty):
-        self.width = int(WIDTH / 7)
-        self.height = int(HEIGHT / 7)
-        self.hillPic = pygame.image.load("images/Objekte/fence.png")
+        self.width = 150
+        self.height = 335
+        self.hillPic = pygame.image.load("images/Objekte/rockGrassDown.png")
         self.hillPic = pygame.transform.scale(self.hillPic, (self.width, self.height))
         self.spawn = False
         self.ResetX = WIDTH + self.width + 10
         self.X = self.ResetX
-        self.Y = (HEIGHT * (1 / 2) + self.height) + 30
+        self.Y = 0
         self.difficulty = difficulty
         self.rect = pygame.Rect(self.X, self.Y, self.width, self.height)
 
@@ -29,7 +30,7 @@ class Fence:
         self.rect = pygame.Rect(self.X, self.Y, self.width, self.height)
         pygame.draw.rect(window, (255, 0, 0), self.rect, 2)
 
-    def placeFence(self, window):
+    def placeRockDown(self, window):
         """
         :param window: Pygame Fenster
         :return: -

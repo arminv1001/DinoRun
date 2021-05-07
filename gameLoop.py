@@ -4,6 +4,7 @@ import pygame
 from World import World
 from Player import Player
 from Fence import Fence
+from rockDown import rockDown
 
 pygame.init()
 
@@ -25,26 +26,31 @@ clock = pygame.time.Clock()
 backgroundWorld = World(WIDTH, HEIGHT, DIFFICULTY)
 man = Player(WIDTH / 2, HEIGHT - 150, step=4, difficulty=DIFFICULTY)
 fence = Fence(WIDTH, HEIGHT, DIFFICULTY)
+rockD = rockDown(WIDTH,HEIGHT,DIFFICULTY)
 
-#TODO dynamische Erstellung von Objekten
-objects = [fence]
+# TODO dynamische Erstellung von Objekten
+objects = [rockD,fence]
 '''
 Gameloop Funktionen
 '''
-# TODO Collisions handling
+
+
+
 def testCollision(objects, man):
-    for object in objects:
-        if man.rect.colliderect(object.rect):
-            print("Collision")
+    for obj in objects:
+        if man.checkCollision(obj.rect):
+            return True
+
+
 
 def drawGame(window):
     backgroundWorld.placeBackground(window)
     window.blit(backgroundWorld.background, (backgroundWorld.background1X, 0))
     window.blit(backgroundWorld.background, (backgroundWorld.background2X, 0))
     fence.placeFence(window)
+    rockD.placeRockDown(window)
     man.draw(window)
     man.drawHitbox(window)
-    testCollision(objects,man)
     pygame.display.update()
 
 
@@ -56,8 +62,6 @@ while run:
     clock.tick(60)
 
     # Background
-
-
     for event in pygame.event.get():
         # Fenster schließen
         if event.type == pygame.QUIT:  # Checks if the red button in the corner of the window is clicked
@@ -87,5 +91,8 @@ while run:
     man.move()
     drawGame(win)
 
+    # TODO Collisions handling
+    if testCollision(objects, man):
+        print("Collision")
 
 pygame.quit()

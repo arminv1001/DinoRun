@@ -109,3 +109,9 @@ class Player:
             playerDownHigh = 100/2
         self.rect = pygame.Rect(self.x, self.y+playerDownHigh, 96, 128/playerDownDiv)
         pygame.draw.rect(window,(255,0,0),self.rect,2)
+
+    def checkCollision(self, objRect):
+            if self.rect.colliderect(objRect):
+                return True
+            else:
+                return False
