@@ -8,30 +8,65 @@ class Player:
         self.y = y - 64
         self.step = step
         self.difficulty = difficulty
+        self.jumpHight = 8
         self.left = False
         self.right = False
         self.walkIndex = 0
+        self.jumpIndex = self.jumpHight
+        self.jump = False
+        self.down = False
         self.loadImage()
 
-    def draw(self, window):
+    def move(self):
         if self.walkIndex + 1 >= 42:
             self.walkIndex = 0
 
         if self.left:
-            window.blit(self.walkLeft[self.walkIndex // 6], (self.x, self.y))
             if self.x >= 0:
-                self.x -= self.step
+                self.x -= (self.step + self.difficulty)
                 self.walkIndex += 1
         elif self.right:
-            # TODO muss besser
-            window.blit(self.walkRight[self.walkIndex // 6], (self.x, self.y))
             if self.x <= 700:
                 self.x += self.step
                 self.walkIndex += 1
+
+        # TODO Parameter für den Sprung einstellen
+        if self.jump:
+            if self.jumpIndex >= - self.jumpHight:
+                self.y -= (self.jumpIndex * abs(self.jumpIndex)) * 0.5
+                if self.right:
+                    self.x += self.step * 4
+                elif self.left:
+                    self.x -= self.step * 4
+                self.jumpIndex -= 1
+
+            else:
+                self.jumpIndex = self.jumpHight
+                self.jump = False
+
         else:
-            window.blit(self.standing, (self.x, self.y))
             if self.x >= 0:
                 self.x -= self.difficulty
+
+    def draw(self, window):
+        if self.jump:
+            if self.left:
+                window.blit(self.jumpLeft[1], (self.x, self.y))
+            else:
+                window.blit(self.jumpRight[1], (self.x, self.y))
+        elif self.left:
+            if self.down:
+                window.blit(self.downLeft,(self.x, self.y))
+            else:
+                window.blit(self.walkLeft[self.walkIndex // 6], (self.x, self.y))
+        elif self.right:
+            if self.down:
+                window.blit(self.downRight,(self.x, self.y))
+            else:
+                # TODO muss besser
+                window.blit(self.walkRight[self.walkIndex // 6], (self.x, self.y))
+        else:
+            window.blit(self.standing, (self.x, self.y))
 
     def loadImage(self):
         # Bildgroeße: 96x128
@@ -54,3 +89,12 @@ class Player:
                          pygame.image.load('Images/SpielerImages/Left/L7.png')]
 
         self.standing = pygame.image.load('Images/SpielerImages/standing.png')
+
+        self.jumpLeft = [pygame.image.load('Images/SpielerImages/jump/jumpL.png'),
+                         pygame.image.load('Images/SpielerImages/jump/fallL.png')]
+
+        self.jumpRight = [pygame.image.load('Images/SpielerImages/jump/jumpR.png'),
+                          pygame.image.load('Images/SpielerImages/jump/fallR.png')]
+
+        self.downLeft = pygame.image.load('Images/SpielerImages/down/downL.png')
+        self.downRight = pygame.image.load('Images/SpielerImages/down/downR.png')

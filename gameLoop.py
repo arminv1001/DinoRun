@@ -23,13 +23,12 @@ clock = pygame.time.Clock()
 # Hintergrund laden
 # Fußboden bei 350
 backgroundWorld = World(WIDTH, HEIGHT, DIFFICULTY)
-man = Player(WIDTH / 2, HEIGHT - 150, DIFFICULTY, DIFFICULTY)
+man = Player(WIDTH / 2, HEIGHT - 150, step=4, difficulty=DIFFICULTY)
 fence = Fence(WIDTH, HEIGHT, DIFFICULTY)
+
 '''
 Gameloop Funktionen
 '''
-
-
 def drawGame(window):
     backgroundWorld.placeBackground(window)
     window.blit(backgroundWorld.background, (backgroundWorld.background1X, 0))
@@ -67,6 +66,15 @@ while run:
         man.right = False
         man.left = False
 
+    if keys[pygame.K_DOWN]:
+        man.down = True
+    else:
+        man.down = False
+
+    if not man.jump:
+        if keys[pygame.K_SPACE]:
+            man.jump = True
+    man.move()
     drawGame(win)
 
 
