@@ -26,15 +26,25 @@ backgroundWorld = World(WIDTH, HEIGHT, DIFFICULTY)
 man = Player(WIDTH / 2, HEIGHT - 150, step=4, difficulty=DIFFICULTY)
 fence = Fence(WIDTH, HEIGHT, DIFFICULTY)
 
+#TODO dynamische Erstellung von Objekten
+objects = [fence]
 '''
 Gameloop Funktionen
 '''
+# TODO Collisions handling
+def testCollision(objects, man):
+    for object in objects:
+        if man.rect.colliderect(object.rect):
+            print("Collision")
+
 def drawGame(window):
     backgroundWorld.placeBackground(window)
     window.blit(backgroundWorld.background, (backgroundWorld.background1X, 0))
     window.blit(backgroundWorld.background, (backgroundWorld.background2X, 0))
     fence.placeFence(window)
     man.draw(window)
+    man.drawHitbox(window)
+    testCollision(objects,man)
     pygame.display.update()
 
 

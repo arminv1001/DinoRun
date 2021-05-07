@@ -16,6 +16,7 @@ class Player:
         self.jump = False
         self.down = False
         self.loadImage()
+        self.rect = pygame.Rect(self.x,self.y,96,128)
 
     def move(self):
         if self.walkIndex + 1 >= 42:
@@ -98,3 +99,13 @@ class Player:
 
         self.downLeft = pygame.image.load('Images/SpielerImages/down/downL.png')
         self.downRight = pygame.image.load('Images/SpielerImages/down/downR.png')
+
+    # TODO muss neu gemacht werden
+    def drawHitbox(self,window):
+        playerDownDiv = 1
+        playerDownHigh = 0
+        if self.down:
+            playerDownDiv = 2
+            playerDownHigh = 100/2
+        self.rect = pygame.Rect(self.x, self.y+playerDownHigh, 96, 128/playerDownDiv)
+        pygame.draw.rect(window,(255,0,0),self.rect,2)
