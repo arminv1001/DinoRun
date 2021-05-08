@@ -16,7 +16,8 @@ class Player:
         self.jump = False
         self.down = False
         self.loadImage()
-        self.rect = pygame.Rect(self.x,self.y,96,128)
+        self.rect = pygame.Rect(self.x, self.y, 96, 128)
+        self.maxX = 700
 
     def move(self):
         if self.walkIndex + 1 >= 42:
@@ -27,7 +28,7 @@ class Player:
                 self.x -= (self.step + self.difficulty)
                 self.walkIndex += 1
         elif self.right:
-            if self.x <= 700:
+            if self.x <= self.maxX:
                 self.x += self.step
                 self.walkIndex += 1
 
@@ -35,9 +36,9 @@ class Player:
         if self.jump:
             if self.jumpIndex >= - self.jumpHight:
                 self.y -= (self.jumpIndex * abs(self.jumpIndex)) * 0.5
-                if self.right:
+                if self.right and self.x <= self.maxX:
                     self.x += self.step * 4
-                elif self.left:
+                elif self.left and self.x >= 0:
                     self.x -= self.step * 4
                 self.jumpIndex -= 1
 
@@ -57,12 +58,12 @@ class Player:
                 window.blit(self.jumpRight[1], (self.x, self.y))
         elif self.left:
             if self.down:
-                window.blit(self.downLeft,(self.x, self.y))
+                window.blit(self.downLeft, (self.x, self.y))
             else:
                 window.blit(self.walkLeft[self.walkIndex // 6], (self.x, self.y))
         elif self.right:
             if self.down:
-                window.blit(self.downRight,(self.x, self.y))
+                window.blit(self.downRight, (self.x, self.y))
             else:
                 # TODO muss besser
                 window.blit(self.walkRight[self.walkIndex // 6], (self.x, self.y))
@@ -101,17 +102,17 @@ class Player:
         self.downRight = pygame.image.load('Images/SpielerImages/down/downR.png')
 
     # TODO muss neu gemacht werden
-    def drawHitbox(self,window):
+    def drawHitbox(self, window):
         playerDownDiv = 1
         playerDownHigh = 0
         if self.down:
             playerDownDiv = 2
-            playerDownHigh = 100/2
-        self.rect = pygame.Rect(self.x, self.y+playerDownHigh, 96, 128/playerDownDiv)
-        pygame.draw.rect(window,(255,0,0),self.rect,2)
+            playerDownHigh = 100 / 2
+        self.rect = pygame.Rect(self.x, self.y + playerDownHigh, 96, 128 / playerDownDiv)
+        pygame.draw.rect(window, (255, 0, 0), self.rect, 2)
 
     def checkCollision(self, objRect):
-            if self.rect.colliderect(objRect):
-                return True
-            else:
-                return False
+        if self.rect.colliderect(objRect):
+            return True
+        else:
+            return False
