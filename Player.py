@@ -4,6 +4,7 @@ import pygame
 class Player:
 
     def __init__(self, x, y, step, difficulty):
+        self.jumpDistance = 2
         self.x = x - 48
         self.y = y - 64
         self.step = step
@@ -37,9 +38,9 @@ class Player:
             if self.jumpIndex >= - self.jumpHight:
                 self.y -= (self.jumpIndex * abs(self.jumpIndex)) * 0.5
                 if self.right and self.x <= self.maxX:
-                    self.x += self.step * 4
+                    self.x += self.step * self.jumpDistance
                 elif self.left and self.x >= 0:
-                    self.x -= self.step * 4
+                    self.x -= self.step * self.jumpDistance
                 self.jumpIndex -= 1
 
             else:
