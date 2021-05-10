@@ -1,6 +1,8 @@
 import random
 
 import pygame
+
+from Coin import Coin
 from World import World
 from Player import Player
 from Fence import Fence
@@ -26,14 +28,14 @@ clock = pygame.time.Clock()
 backgroundWorld = World(WIDTH, HEIGHT, DIFFICULTY)
 man = Player(WIDTH / 2, HEIGHT - 150, step=4, difficulty=DIFFICULTY)
 fence = Fence(WIDTH, HEIGHT, DIFFICULTY)
-rockD = rockDown(WIDTH,HEIGHT,DIFFICULTY)
+rockD = rockDown(WIDTH, HEIGHT, DIFFICULTY)
+coin = Coin(DIFFICULTY, WIDTH, HEIGHT)
 
 # TODO dynamische Erstellung von Objekten
-objects = [rockD,fence]
+objects = [rockD, fence]
 '''
 Gameloop Funktionen
 '''
-
 
 
 def testCollision(objects, man):
@@ -42,15 +44,16 @@ def testCollision(objects, man):
             return True
 
 
-
 def drawGame(window):
     backgroundWorld.placeBackground(window)
     window.blit(backgroundWorld.background, (backgroundWorld.background1X, 0))
     window.blit(backgroundWorld.background, (backgroundWorld.background2X, 0))
     fence.placeFence(window)
     rockD.placeRockDown(window)
+    coin.draw(window)
     man.draw(window)
     man.drawHitbox(window)
+    #window.blit(coin.coinImage, (250,250))
     pygame.display.update()
 
 
@@ -88,6 +91,7 @@ while run:
     if not man.jump:
         if keys[pygame.K_SPACE]:
             man.jump = True
+
     man.move()
     drawGame(win)
 
