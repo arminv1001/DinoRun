@@ -1,8 +1,10 @@
 import random
 import pygame
 
+from GameObject import GameObject
 
-class flyingEnemy:
+
+class flyingEnemy(GameObject):
     def __init__(self, WIDTH, HEIGHT, difficulty):
         self.width = 60
         self.height = 70
@@ -15,12 +17,6 @@ class flyingEnemy:
         self.difficulty = difficulty
         self.rect = pygame.Rect(self.X, self.Y, self.width, self.height)
 
-    def randomSpawn(self):
-        """
-        :return:
-        """
-        if self.spawn == False:
-            self.spawn = random.random() > 0.99
 
     def drawHitbox(self, window):
         """

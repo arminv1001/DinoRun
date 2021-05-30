@@ -1,15 +1,14 @@
 import pygame
 
+from GameObject import GameObject
 
-class Coin:
 
-    def __init__(self,difficulty, WIDTH, HEIGHT):
-        self.difficulty = difficulty
+class Coin(GameObject):
+
+    def __init__(self, WIDTH, HEIGHT, difficulty):
+        super().__init__(WIDTH, HEIGHT, difficulty)
         self.loadImage()
         self.setCoin()
-        self.WIDTH = WIDTH
-        self.HEIGHT = HEIGHT
-
 
     def setCoin(self):
         self.x = 1000

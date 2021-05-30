@@ -1,33 +1,25 @@
 import random
 import pygame
 
+from GameObject import GameObject
 
-class Fence:
+
+class Fence(GameObject):
     def __init__(self, WIDTH, HEIGHT, difficulty):
+        super().__init__(WIDTH, HEIGHT, difficulty)
         self.width = int(WIDTH / 7)
         self.height = int(HEIGHT / 7)
         self.hillPic = pygame.image.load("images/Objekte/fence.png")
         self.hillPic = pygame.transform.scale(self.hillPic, (self.width, self.height))
         self.spawn = False
         self.ResetX = WIDTH + self.width + 10
-        self.X = self.ResetX
-        self.Y = (HEIGHT * (1 / 2) + self.height) + 30
+        super().setX(self.ResetX)
+        super().setY((HEIGHT * (1 / 2) + self.height) + 30)
         self.difficulty = difficulty
         self.rect = pygame.Rect(self.X, self.Y, self.width, self.height)
 
-    def randomSpawn(self):
-        """
-        :return:
-        """
-        if self.spawn == False:
-            self.spawn = random.random() > 0.99
 
-    def drawHitbox(self, window):
-        """
-        :return:
-        """
-        self.rect = pygame.Rect(self.X, self.Y, self.width, self.height)
-        pygame.draw.rect(window, (255, 0, 0), self.rect, 2)
+
 
     def placeFence(self, window):
         """
@@ -42,3 +34,4 @@ class Fence:
             if self.X <= -self.width:
                 self.spawn = False
                 self.X = self.ResetX
+
