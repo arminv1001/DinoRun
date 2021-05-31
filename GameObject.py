@@ -32,5 +32,5 @@ class GameObject:
         """
         :return:
         """
-        self.hitbox = pygame.Rect(self.X, self.Y, self.widthFrame, self.heightFrame)
+        self.hitbox = pygame.Rect(self.X, self.Y, self.widthObj, self.heightObj)
         pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
