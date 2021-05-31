@@ -6,24 +6,18 @@ from GameObject import GameObject
 
 class flyingEnemy(GameObject):
     def __init__(self, WIDTH, HEIGHT, difficulty):
-        self.width = 60
-        self.height = 70
-        self.hillPic = pygame.image.load("images/Objekte/flyMan_fly.png")
-        self.hillPic = pygame.transform.scale(self.hillPic, (self.width, self.height))
-        self.spawn = False
-        self.ResetX = WIDTH + self.width + 10
-        self.X = self.ResetX
-        self.Y = HEIGHT-240
-        self.difficulty = difficulty
-        self.rect = pygame.Rect(self.X, self.Y, self.width, self.height)
+        widthObj = 60
+        heightObj = 70
+        flyImage = self.loadImage(widthObj, heightObj)
+        Y = HEIGHT - 240
 
+        super().__init__(WIDTH, HEIGHT, difficulty, flyImage, widthObj, heightObj, Y)
 
-    def drawHitbox(self, window):
-        """
-        :return:
-        """
-        self.rect = pygame.Rect(self.X, self.Y, self.width, self.height)
-        pygame.draw.rect(window, (255, 0, 0), self.rect, 2)
+    @staticmethod
+    def loadImage(widthObj, heightObj):
+        flyImage = pygame.image.load("images/Objekte/flyMan_fly.png")
+        flyImage = pygame.transform.scale(flyImage, (widthObj, heightObj))
+        return flyImage
 
     def place(self, window):
         """
@@ -32,9 +26,9 @@ class flyingEnemy(GameObject):
         """
         self.randomSpawn()
         if self.spawn:
-            window.blit(self.hillPic, (self.X, self.Y))
+            window.blit(self.image, (self.X, self.Y))
             self.X -= 1 * self.difficulty * 2
             self.drawHitbox(window)
-            if self.X <= -self.width:
+            if self.X <= -self.widthObj:
                 self.spawn = False
                 self.X = self.ResetX

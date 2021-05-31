@@ -29,7 +29,7 @@ backgroundWorld = World(WIDTH, HEIGHT, DIFFICULTY)
 man = Player(WIDTH / 2, HEIGHT - 150, step=4, difficulty=DIFFICULTY)
 fence = Fence(WIDTH, HEIGHT, DIFFICULTY)
 flyingEnemy = flyingEnemy(WIDTH, HEIGHT, DIFFICULTY)
-coin = Coin(DIFFICULTY, WIDTH, HEIGHT)
+coin = Coin(WIDTH, HEIGHT, DIFFICULTY)
 
 # TODO dynamische Erstellung von Objekten
 objects = [flyingEnemy, fence]
@@ -48,9 +48,9 @@ def drawGame(window):
     backgroundWorld.placeBackground(window)
     window.blit(backgroundWorld.background, (backgroundWorld.background1X, 0))
     window.blit(backgroundWorld.background, (backgroundWorld.background2X, 0))
-    fence.placeFence(window)
+    fence.place(window)
     flyingEnemy.place(window)
-    coin.draw(window)
+    coin.place(window)
     man.draw(window)
     man.drawHitbox(window)
     #window.blit(coin.coinImage, (250,250))

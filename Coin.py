@@ -4,24 +4,22 @@ from GameObject import GameObject
 
 
 class Coin(GameObject):
-
     def __init__(self, WIDTH, HEIGHT, difficulty):
-        super().__init__(WIDTH, HEIGHT, difficulty)
-        self.loadImage()
-        self.setCoin()
+        widthObj = 40
+        heightObj = 40
+        coinImage = self.loadImage()
+        Y = 370
 
-    def setCoin(self):
-        self.x = 1000
-        self.y = 370
+        super().__init__(WIDTH, HEIGHT, difficulty, coinImage, widthObj, heightObj, Y)
 
-    def loadImage(self):
-        self.coinImage = pygame.image.load('Images/Objekte/coin.png')
-        self.coinImage = pygame.transform.scale(self.coinImage, (40, 40))
 
-    def draw(self, window):
-        if self.x >= 0:
-            window.blit(self.coinImage,(self.x, self.y))
-            self.x -= self.difficulty
-            print(self.x)
-        else:
-            self.setCoin()
+
+
+
+    @staticmethod
+    def loadImage():
+        coinImage = pygame.image.load('Images/Objekte/coin.png')
+        coinImage = pygame.transform.scale(coinImage, (40, 40))
+        return coinImage
+
+
