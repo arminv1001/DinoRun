@@ -4,7 +4,7 @@ import pygame
 from GameObject import GameObject
 
 
-class flyingEnemy(GameObject):
+class FlyingEnemy(GameObject):
     def __init__(self, WIDTH, HEIGHT, difficulty):
         widthObj = 60
         heightObj = 70
