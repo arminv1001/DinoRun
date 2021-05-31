@@ -37,7 +37,9 @@ def gameIntro(WIDTH, HEIGHT, DIFFICULTY):
 
         textStart = textFormat("START", font, 75, white)
         startRect = textStart.get_rect()
-        win.blit(textStart, (WIDTH / 2 - (startRect[2] / 2), 300))
+        koord = (WIDTH / 2 - (startRect[2] / 2), 300)
+        startRect = startRect.move(koord)
+        win.blit(textStart, koord)
 
         textTitle = textFormat("Emmas Adventure", font, 75, black)
         titleRect = textTitle.get_rect()
@@ -45,17 +47,19 @@ def gameIntro(WIDTH, HEIGHT, DIFFICULTY):
 
 
         pygame.display.update()
+        return startRect
 
     """
     Loop
     """
 
     while run:
-        clock.tick(30)
-
+        startRect = draw()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-
-        draw()
+            if event.type == pygame.MOUSEBUTTONUP:
+                xMouse,yMouse = pygame.mouse.get_pos()
+                if startRect.collidepoint(xMouse,yMouse):
+                    run = False
     pygame.quit()
