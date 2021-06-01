@@ -16,7 +16,6 @@ class GameObject:
         self.image = imageObj
         self.hitbox = pygame.Rect(self.X, self.Y, self.widthObj, self.heightObj)
         self.spawn = False
-        self.rect = pygame.Rect(self.X, self.Y, self.widthObj, self.heightObj)
 
     def randomSpawn(self):
         """

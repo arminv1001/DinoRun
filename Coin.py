@@ -17,3 +17,6 @@ class Coin(GameObject):
         coinImage = pygame.image.load('Images/Objekte/coin.png')
         coinImage = pygame.transform.scale(coinImage, (40, 40))
         return coinImage
+
+    def removeCoin(self):
+        self.X = self.ResetX

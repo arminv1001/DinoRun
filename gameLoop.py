@@ -10,16 +10,11 @@ from FlyingEnemy import FlyingEnemy
 
 
 def gameloop(WIDTH, HEIGHT, DIFFICULTY):
-
-
-
     '''
     Konstanten definieren 
     '''
 
-    global valScore
     valScore = str(0)
-
 
     win = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -38,7 +33,7 @@ def gameloop(WIDTH, HEIGHT, DIFFICULTY):
     flyingEnemy = FlyingEnemy(WIDTH, HEIGHT, DIFFICULTY)
 
     # TODO dynamische Erstellung von Objekten
-    objects = [fence, flyingEnemy]
+    objects = [fence, flyingEnemy, coin]
 
     '''
     Gameloop Funktionen
@@ -50,25 +45,25 @@ def gameloop(WIDTH, HEIGHT, DIFFICULTY):
 
         return newText
 
-    def testCollision(objects, man):
+    def testCollision(objects, man, valScore):
         for obj in objects:
-            if man.checkCollision(obj.rect):
-                return True
+            if man.checkCollision(obj.hitbox):
+                if isinstance(obj, Coin):
+                    print("Coin")
+                    valScore = int(valScore)
+                    valScore += 1
+                    coin.removeCoin()
+                return True, valScore
+        return False, valScore
 
-    def CollisionCoin(coinObj, manObj, score):
-        if manObj.checkCollision(coinObj.rect):
-            print("True")
-            return score
-
-    def drawGame(window):
+    def drawGame(window, valScore):
         backgroundWorld.placeBackground(window)
         window.blit(backgroundWorld.background, (backgroundWorld.background1X, 0))
         window.blit(backgroundWorld.background, (backgroundWorld.background2X, 0))
 
-        score = textFormat(valScore, font, 50, white)
+        score = textFormat(str(valScore), font, 50, white)
         scoreRect = score.get_rect()
         window.blit(score, (WIDTH - (scoreRect[2] + 10), 30))
-
 
         fence.place(window)
         flyingEnemy.place(window)
@@ -115,18 +110,11 @@ def gameloop(WIDTH, HEIGHT, DIFFICULTY):
 
         man.move()
 
-
-        temp = CollisionCoin(coin, man, valScore)
-
-
-        drawGame(win)
-
-
         # TODO Collisions handling
-        if testCollision(objects, man):
-            print("Collision")
+        collBool, valScore = testCollision(objects, man, valScore)
+        #if collBool:
+
+
+        drawGame(win, valScore)
 
     pygame.quit()
-
-
-
