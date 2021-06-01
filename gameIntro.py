@@ -3,12 +3,13 @@ import pygame
 from World import World
 from pygame.locals import *
 
-def gameIntro(WIDTH, HEIGHT, DIFFICULTY):
-    pygame.init()
 
+def gameIntro(WIDTH, HEIGHT, DIFFICULTY):
     """
     Konstanten 
     """
+    global mouseHover
+    mouseHover = False
     win = pygame.display.set_mode((WIDTH, HEIGHT))
     run = True
     clock = pygame.time.Clock()
@@ -35,7 +36,11 @@ def gameIntro(WIDTH, HEIGHT, DIFFICULTY):
         win.blit(backgroundWorld.background, (backgroundWorld.background1X, 0))
         win.blit(backgroundWorld.background, (backgroundWorld.background2X, 0))
 
-        textStart = textFormat("START", font, 75, white)
+        if mouseHover:
+            textStart = textFormat("START", font, 75, black)
+        else:
+            textStart = textFormat("START", font, 75, white)
+
         startRect = textStart.get_rect()
         koord = (WIDTH / 2 - (startRect[2] / 2), 300)
         startRect = startRect.move(koord)
@@ -43,8 +48,7 @@ def gameIntro(WIDTH, HEIGHT, DIFFICULTY):
 
         textTitle = textFormat("Emmas Adventure", font, 75, black)
         titleRect = textTitle.get_rect()
-        win.blit(textTitle,(WIDTH / 2 - (titleRect[2] / 2), 50))
-
+        win.blit(textTitle, (WIDTH / 2 - (titleRect[2] / 2), 50))
 
         pygame.display.update()
         return startRect
@@ -56,10 +60,13 @@ def gameIntro(WIDTH, HEIGHT, DIFFICULTY):
     while run:
         startRect = draw()
         for event in pygame.event.get():
+            xMouse, yMouse = pygame.mouse.get_pos()
             if event.type == pygame.QUIT:
+                pygame.quit()
                 run = False
-            if event.type == pygame.MOUSEBUTTONUP:
-                xMouse,yMouse = pygame.mouse.get_pos()
-                if startRect.collidepoint(xMouse,yMouse):
-                    run = False
-    pygame.quit()
+            if startRect.collidepoint(xMouse, yMouse):
+                mouseHover = True
+            else:
+                mouseHover = False
+            if event.type == pygame.MOUSEBUTTONUP and mouseHover:
+                run = False
