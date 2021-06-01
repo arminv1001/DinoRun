@@ -11,5 +11,5 @@ if __name__ == "__main__":
 
     pygame.init()
 
-    gameIntro(WIDTH, HEIGHT, DIFFICULTY)
+    gameIntro(WIDTH, HEIGHT)
     gameloop(WIDTH, HEIGHT, DIFFICULTY)

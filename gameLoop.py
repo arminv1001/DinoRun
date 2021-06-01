@@ -7,6 +7,7 @@ from World import World
 from Player import Player
 from Fence import Fence
 from FlyingEnemy import FlyingEnemy
+from gameEnd import gameEnde
 
 
 def gameloop(WIDTH, HEIGHT, DIFFICULTY):
@@ -38,6 +39,10 @@ def gameloop(WIDTH, HEIGHT, DIFFICULTY):
     '''
     Gameloop Funktionen
     '''
+    def resetObj(objects):
+        for obj in objects:
+            obj.X = obj.ResetX
+
 
     def textFormat(message, textFont, textSize, textColor):
         newFont = pygame.font.Font(textFont, textSize)
@@ -53,6 +58,7 @@ def gameloop(WIDTH, HEIGHT, DIFFICULTY):
                     valScore = int(valScore)
                     valScore += 1
                     coin.removeCoin()
+                    return False, valScore
                 return True, valScore
         return False, valScore
 
@@ -112,9 +118,15 @@ def gameloop(WIDTH, HEIGHT, DIFFICULTY):
 
         # TODO Collisions handling
         collBool, valScore = testCollision(objects, man, valScore)
-        #if collBool:
 
-
+        if collBool:
+            reset = gameEnde(HEIGHT, WIDTH, win, font)
+            if reset:
+                resetObj(objects)
+                man.x = man.maxX/2
+            else:
+                run = False
         drawGame(win, valScore)
+
 
     pygame.quit()

@@ -4,10 +4,18 @@ from World import World
 from pygame.locals import *
 
 
-def gameIntro(WIDTH, HEIGHT, DIFFICULTY):
+def textFormat(message, textFont, textSize, textColor):
+    newFont = pygame.font.Font(textFont, textSize)
+    newText = newFont.render(message, 0, textColor)
+
+    return newText
+
+
+def gameIntro(WIDTH, HEIGHT):
     """
     Konstanten 
     """
+    DIFFICULTY = 2
     global mouseHover
     mouseHover = False
     win = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -25,11 +33,6 @@ def gameIntro(WIDTH, HEIGHT, DIFFICULTY):
 
     backgroundWorld = World(WIDTH, HEIGHT, DIFFICULTY)
 
-    def textFormat(message, textFont, textSize, textColor):
-        newFont = pygame.font.Font(textFont, textSize)
-        newText = newFont.render(message, 0, textColor)
-
-        return newText
 
     def draw():
         backgroundWorld.placeBackground(win)
