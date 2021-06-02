@@ -11,7 +11,9 @@ if __name__ == "__main__":
     DIFFICULTY = 2
 
     pygame.init()
-
+    pygame.mixer.music.load("Sounds/theme_music.wav")
+    # TODO Finn hier auskommentieren wenn kein bock auf Musik
+    pygame.mixer.music.play(-1)
 
     #gameIntro(WIDTH, HEIGHT)
     gameIntro = GameIntroClass(WIDTH, HEIGHT, DIFFICULTY)

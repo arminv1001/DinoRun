@@ -24,6 +24,7 @@ class GamePlayClass(GamePage):
         for obj in self.objects:
             if self.man.checkCollision(obj.hitbox):
                 if isinstance(obj, Coin):
+                    pygame.mixer.Sound.play(pygame.mixer.Sound("Sounds/CoinCollect.wav"))
                     self.valScore = int(self.valScore)
                     self.valScore += 1
                     self.coin.removeCoin()
@@ -94,7 +95,7 @@ class GamePlayClass(GamePage):
             collBool = self.collision()
 
             if collBool:
-                self.gameBool = False
+                pygame.mixer.Sound.play(pygame.mixer.Sound("Sounds/HumanHurt.wav"))
                 self.resetObj()
                 self.man.x = self.man.maxX / 2
                 self.valScore = str(0)
