@@ -23,7 +23,7 @@ def gameEnde(HEIGHT, WIDTH, window, font):
         rectGameOver = textGameOver.get_rect()
         window.blit(textGameOver, (WIDTH / 2 - (rectGameOver[2] / 2), 50))
 
-        mouseHover = False
+        #mouseHover = False
 
         for event in pygame.event.get():
             # Fenster schließen
