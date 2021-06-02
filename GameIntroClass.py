@@ -13,9 +13,6 @@ class GameIntroClass(GamePage):
         self.mouseHover = False
 
 
-
-
-
     def draw(self):
         #self.backgroundWorld.placeBackground(self.win)
         self.win.blit(self.backgroundWorld.background, (self.backgroundWorld.background1X, 0))
@@ -39,15 +36,15 @@ class GameIntroClass(GamePage):
 
 
     def loop(self):
+        while True:
             self.draw()
             for event in pygame.event.get():
                 xMouse, yMouse = pygame.mouse.get_pos()
                 if event.type == pygame.QUIT:
-                    self.gameBool = False
-                    pygame.quit()
+                    return False
                 if self.startRect.collidepoint(xMouse, yMouse):
                     self.mouseHover = True
                 else:
                     self.mouseHover = False
                 if event.type == pygame.MOUSEBUTTONUP and self.mouseHover:
-                    self.gameBool = False
+                    return True

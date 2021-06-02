@@ -20,15 +20,12 @@ class GamePage:
         self.white = (255, 255, 255)
         self.black = (0, 0, 0)
 
-        self.gameBool = False
 
     def textFormat(self, message, textFont, textSize, textColor):
         newFont = pygame.font.Font(textFont, textSize)
         newText = newFont.render(message, 0, textColor)
         return newText
 
-    def setGameBool(self, val):
-        self.gameBool = val
 
     @abstractmethod
     def draw(self):

@@ -39,15 +39,16 @@ class GameEndClass(GamePage):
 
 
     def loop(self):
+        while True:
             self.draw()
             for event in pygame.event.get():
                 xMouse, yMouse = pygame.mouse.get_pos()
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    self.gameBool = False
+                    return False
                 if self.startRect.collidepoint(xMouse, yMouse):
                     self.mouseHover = True
                 else:
                     self.mouseHover = False
                 if event.type == pygame.MOUSEBUTTONUP and self.mouseHover:
-                    self.gameBool = False
+                    return True

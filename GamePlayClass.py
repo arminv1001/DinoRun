@@ -55,45 +55,49 @@ class GamePlayClass(GamePage):
         pygame.display.update()
 
     def loop(self):
-        self.clock.tick(60)
+        gameLoop = True
+        while gameLoop:
+            self.clock.tick(60)
 
-        # Background
-        for event in pygame.event.get():
-            # Fenster schließen
-            if event.type == pygame.QUIT:  # Checks if the red button in the corner of the window is clicked
-                self.gameBool = False  # Ends the game loop
+            # Background
+            for event in pygame.event.get():
+                # Fenster schließen
+                if event.type == pygame.QUIT:  # Checks if the red button in the corner of the window is clicked
+                    return False
 
-        # Key Steuerung Player
-        # TODO eventuel auslagern
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            self.man.left = True
-            self.man.right = False
-        elif keys[pygame.K_RIGHT] and self.man.x < self.WIDTH:
-            self.man.right = True
-            self.man.left = False
-        else:
-            self.man.right = False
-            self.man.left = False
+            # Key Steuerung Player
+            # TODO eventuel auslagern
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_LEFT]:
+                self.man.left = True
+                self.man.right = False
+            elif keys[pygame.K_RIGHT] and self.man.x < self.WIDTH:
+                self.man.right = True
+                self.man.left = False
+            else:
+                self.man.right = False
+                self.man.left = False
 
-        if keys[pygame.K_DOWN]:
-            self.man.down = True
-        else:
-            self.man.down = False
+            if keys[pygame.K_DOWN]:
+                self.man.down = True
+            else:
+                self.man.down = False
 
-        if not self.man.jump:
-            if keys[pygame.K_SPACE]:
-                self.man.jump = True
+            if not self.man.jump:
+                if keys[pygame.K_SPACE]:
+                    self.man.jump = True
 
-        self.man.move()
-        self.draw()
+            self.man.move()
+            self.draw()
 
-        #TODO Collisions handling
-        collBool = self.collision()
+            #TODO Collisions handling
+            collBool = self.collision()
 
-        if collBool:
-            self.gameBool = False
-            self.resetObj()
-            self.man.x = self.man.maxX / 2
+            if collBool:
+                self.gameBool = False
+                self.resetObj()
+                self.man.x = self.man.maxX / 2
+                self.valScore = str(0)
+                return True
 
 
