@@ -1,10 +1,10 @@
 import sqlite3
+from operator import itemgetter
 
-# TODO OOB Ansatz besprechen
 
 class HighScoreDB:
     def __init__(self):
-        self.tableName = "HighscoreTable"
+        self.tableName = "HighscoreDB"
         self.conn = self.createDB()
 
 
@@ -38,10 +38,12 @@ class HighScoreDB:
         """
         Gibt die aktuelle Highscore-Tabelle zurück
         :return: Inhalt der Highscore Tabelle, als Liste mit Tupeln
+                https://stackoverflow.com/questions/4174941/how-to-sort-a-list-of-lists-by-a-specific-index-of-the-inner-list
         """
         sqlSelect = f"SELECT * FROM {self.tableName}"
         cursor = self.conn.cursor()
         cursor.execute(sqlSelect)
         selectRows = cursor.fetchall()
         cursor.close()
+        selectRows = sorted(selectRows, key=itemgetter(2), reverse=True)
         return selectRows

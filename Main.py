@@ -28,6 +28,7 @@ if __name__ == "__main__":
                 run = gameEnd.loop(score)
 
     pygame.quit()
+    gameEnd.highscoreDB.conn.close()
 
 
 
