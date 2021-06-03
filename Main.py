@@ -1,5 +1,10 @@
 import pygame
 
+# todo Kommentare
+# todo Test
+# todo Readme
+# todo requirement
+
 from GameEndClass import GameEndClass
 from GamePlayClass import GamePlayClass
 from GameIntroClass import  GameIntroClass

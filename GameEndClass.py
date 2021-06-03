@@ -48,7 +48,7 @@ class GameEndClass(GamePage):
         self.startRect = startRect.move(koord)
         self.win.blit(textStart, koord)
 
-        textSurface = self.textFormat(self.user_text,self.font, 30, self.black)
+        textSurface = self.textFormat(self.userText, self.font, 30, self.black)
         surfaceRect = textSurface.get_rect()
         self.win.blit(textSurface, (self.WIDTH / 2 - (surfaceRect[2] / 2), 200))
 
@@ -66,7 +66,7 @@ class GameEndClass(GamePage):
 
 
     def loop(self,score):
-        self.user_text = ""
+        self.userText = ""
         while True:
             self.draw()
             for event in pygame.event.get():
@@ -82,15 +82,15 @@ class GameEndClass(GamePage):
                     return True
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_BACKSPACE:
-                        self.user_text = self.user_text[:-1]
+                        self.userText = self.userText[:-1]
                     elif event.key == pygame.K_RETURN:
                         print("ENTER")
-                        self.highscoreDB.insertScore(self.user_text,score)
+                        self.highscoreDB.insertScore(self.userText, score)
                         self.highscoreDBContent = self.highscoreDB.returnHighscoreList()
                         # TODO Upload DB
                     else:
-                        if (len(self.user_text) < 20):
-                            self.user_text += event.unicode
+                        if (len(self.userText) < 20):
+                            self.userText += event.unicode
 
                 #text_surface = self.gameFont.render(user_text,True,self.black)
                 #text_surface = self.textFormat(user_text,self.font,75,self.black)

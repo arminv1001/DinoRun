@@ -1,5 +1,7 @@
 import pygame
-
+#todo max Slide
+#todo hitbox kleiner
+#todo Sterben
 
 class Player:
 
@@ -117,3 +119,5 @@ class Player:
             return True
         else:
             return False
+
+

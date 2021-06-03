@@ -6,6 +6,7 @@ from FlyingEnemy import FlyingEnemy
 from GamePage import GamePage
 from Player import Player
 
+# todo spawn
 
 class GamePlayClass(GamePage):
     def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
