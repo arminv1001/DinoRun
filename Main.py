@@ -23,9 +23,9 @@ if __name__ == "__main__":
     run = gameIntro.loop()
 
     while run:
-            run =  gamePlay.loop()
+            run,score =  gamePlay.loop()
             if run:
-                run = gameEnd.loop()
+                run = gameEnd.loop(score)
 
     pygame.quit()
 

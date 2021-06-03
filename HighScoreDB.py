@@ -4,15 +4,17 @@ import sqlite3
 
 class HighScoreDB:
     def __init__(self):
+        self.tableName = "HighscoreTable"
         self.conn = self.createDB()
-        self.tableName = "Highscore"
+
 
     def createDB(self):
         """
         Erstellt die benötigte DB, falls sie nicht schon exestiert.
         :return: connection
         """
-        conn = sqlite3.connect(f"Resources/{self.tableName}.db")
+        print(self.tableName)
+        conn = sqlite3.connect(f"Database/{self.tableName}.db")
         highscoreDBSql = f" CREATE TABLE IF NOT EXISTS {self.tableName} ( id integer PRIMARY KEY AUTOINCREMENT,username VARCHAR(20) NOT NULL,score integer NOT NULL); "
         cursor = conn.cursor()
         cursor.execute(highscoreDBSql)
@@ -39,6 +41,7 @@ class HighScoreDB:
         """
         sqlSelect = f"SELECT * FROM {self.tableName}"
         cursor = self.conn.cursor()
-        selectReturn = cursor.execute(sqlSelect)
+        cursor.execute(sqlSelect)
+        selectRows = cursor.fetchall()
         cursor.close()
-        return selectReturn
+        return selectRows

@@ -3,22 +3,38 @@ import pygame
 from GamePage import GamePage
 from World import World
 from HighScoreDB import HighScoreDB
+from operator import itemgetter
 
 class GameEndClass(GamePage):
 
     def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
+        """
 
+        :param WIDTH:
+        :param HEIGHT:
+        :param DIFFICULTY:
+
+        https://stackoverflow.com/questions/4174941/how-to-sort-a-list-of-lists-by-a-specific-index-of-the-inner-list
+        """
         super().__init__(WIDTH, HEIGHT, DIFFICULTY)
         self.gameFont = pygame.font.Font(self.font,20)
         self.mouseHover = False
         self.highscoreDB = HighScoreDB()
         self.highscoreDBContent = self.highscoreDB.returnHighscoreList()
+        self.highscoreDBContent = sorted(self.highscoreDBContent,key=itemgetter(2),reverse=True)
+        print(self.highscoreDBContent)
 
-
-    def printFrame(self, text, heightText,fontSize):
+    def printTitle(self, text, heightText, fontSize):
         textFormat = self.textFormat(text, self.font, fontSize, self.black)
         textRect = textFormat.get_rect()
         self.win.blit(textFormat, ((self.WIDTH / 2 - textRect[2]/ 2), heightText))
+
+    def highscoreRowPrint(self, username, score, index):
+        text = str(index+1).ljust(10) + username.ljust(20)
+        text += score
+        textScore = self.textFormat(text,self.font,30,self.black)
+        textRect = textScore.get_rect()
+        self.win.blit(textScore,((self.WIDTH / 2 - textRect[2]/ 2), (index+1) * 50 + 200))
 
     def draw(self):
         #self.backgroundWorld.placeBackground(self.win)
@@ -35,14 +51,16 @@ class GameEndClass(GamePage):
         self.startRect = startRect.move(koord)
         self.win.blit(textStart, koord)
 
-        self.printFrame("Game Over", 10,75)
-        self.printFrame("Highscore:", 100,50)
-        # TODO PLOT HIGHSCORE
+        self.printTitle("Game Over", 10, 75)
+        self.printTitle("Highscore:", 100, 50)
+        for index in range(0,3):
+            self.highscoreRowPrint(self.highscoreDBContent[index][1],str(self.highscoreDBContent[index][2]),index)
+
         pygame.draw.rect(self.win, self.black,(self.WIDTH/2 - 200, 200, 400,40),2)
         pygame.display.update()
 
 
-    def loop(self):
+    def loop(self,score):
         user_text = ""
         while True:
             self.draw()
@@ -62,11 +80,11 @@ class GameEndClass(GamePage):
                         user_text += user_text[:-1]
                     elif event.key == pygame.K_RETURN:
                         print("ENTER")
+                        self.highscoreDB.insertScore(user_text,score)
                         # TODO Upload DB
                     else:
                         if (len(user_text) < 20):
                             user_text += event.unicode
-
 
                 text_surface = self.gameFont.render(user_text,True,self.black)
                 self.win.blit(text_surface,(self.WIDTH/2 - 120,205))

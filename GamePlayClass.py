@@ -98,7 +98,8 @@ class GamePlayClass(GamePage):
                 pygame.mixer.Sound.play(pygame.mixer.Sound("Sounds/HumanHurt.wav"))
                 self.resetObj()
                 self.man.x = self.man.maxX / 2
+                tmp_score = self.valScore
                 self.valScore = str(0)
-                return True
+                return True,tmp_score
 
 
