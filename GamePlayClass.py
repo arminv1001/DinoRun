@@ -38,7 +38,9 @@ class GamePlayClass(GamePage):
     def resetObj(self):
         for obj in self.objects:
             obj.X = obj.ResetX
-
+        self.man.dead = False
+        self.man.deadEnd = False
+        self.man.y = self.man.yConst
 
     def draw(self):
         self.backgroundWorld.placeBackground(self.win)
@@ -94,9 +96,12 @@ class GamePlayClass(GamePage):
 
             #TODO Collisions handling
             collBool = self.collision()
-
             if collBool:
+                self.man.dead = True
                 pygame.mixer.Sound.play(pygame.mixer.Sound("Sounds/HumanHurt.wav"))
+
+            if self.man.deadEnd:
+
                 self.resetObj()
                 self.man.x = self.man.maxX / 2
                 tmp_score = self.valScore

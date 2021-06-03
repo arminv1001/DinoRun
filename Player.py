@@ -9,6 +9,7 @@ class Player:
         self.jumpDistance = 2
         self.x = x - 48
         self.y = y - 64
+        self.yConst = self.y
         self.step = step
         self.difficulty = difficulty
         self.jumpHight = 8
@@ -18,6 +19,8 @@ class Player:
         self.jumpIndex = self.jumpHight
         self.jump = False
         self.down = False
+        self.dead = False
+        self.deadEnd = False
         self.loadImage()
         self.rect = pygame.Rect(self.x, self.y, 96, 128)
         self.maxX = 700
@@ -48,6 +51,12 @@ class Player:
             else:
                 self.jumpIndex = self.jumpHight
                 self.jump = False
+
+        if self.dead:
+            if self.y >= 490:
+                self.deadEnd = True
+            elif self.y <= 500:
+                self.y += 5
 
         else:
             if self.x >= 0:
@@ -104,7 +113,7 @@ class Player:
         self.downLeft = pygame.image.load('Images/SpielerImages/down/downL.png')
         self.downRight = pygame.image.load('Images/SpielerImages/down/downR.png')
 
-    # TODO muss neu gemacht werden
+
     def drawHitbox(self, window):
         playerDownDiv = 1
         playerDownHigh = 0
