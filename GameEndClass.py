@@ -48,8 +48,13 @@ class GameEndClass(GamePage):
         self.startRect = startRect.move(koord)
         self.win.blit(textStart, koord)
 
+        textSurface = self.textFormat(self.user_text,self.font, 30, self.black)
+        surfaceRect = textSurface.get_rect()
+        self.win.blit(textSurface, (self.WIDTH / 2 - (surfaceRect[2] / 2), 200))
+
         self.printTitle("Game Over", 10, 75)
         self.printTitle("Highscore:", 100, 50)
+
         dbEntries = len(self.highscoreDBContent)
         if dbEntries > 3:
             dbEntries = 3
@@ -61,7 +66,7 @@ class GameEndClass(GamePage):
 
 
     def loop(self,score):
-        user_text = ""
+        self.user_text = ""
         while True:
             self.draw()
             for event in pygame.event.get():
@@ -77,18 +82,19 @@ class GameEndClass(GamePage):
                     return True
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_BACKSPACE:
-                        user_text += user_text[:-1]
+                        self.user_text = self.user_text[:-1]
                     elif event.key == pygame.K_RETURN:
                         print("ENTER")
-                        self.highscoreDB.insertScore(user_text,score)
+                        self.highscoreDB.insertScore(self.user_text,score)
                         self.highscoreDBContent = self.highscoreDB.returnHighscoreList()
                         # TODO Upload DB
                     else:
-                        if (len(user_text) < 20):
-                            user_text += event.unicode
+                        if (len(self.user_text) < 20):
+                            self.user_text += event.unicode
 
-                text_surface = self.gameFont.render(user_text,True,self.black)
-                self.win.blit(text_surface,(self.WIDTH/2 - 120,205))
+                #text_surface = self.gameFont.render(user_text,True,self.black)
+                #text_surface = self.textFormat(user_text,self.font,75,self.black)
+                #self.win.blit(text_surface,(self.WIDTH/2 - 120,205))
 
                 pygame.display.flip()
                 self.clock.tick(60)
