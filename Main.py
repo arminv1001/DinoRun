@@ -4,6 +4,7 @@ import pygame
 # todo Test
 # todo Readme
 # todo requirement
+# TODO Difficulty in abhänigkeit von der Ges
 
 from GameEndClass import GameEndClass
 from GamePlayClass import GamePlayClass

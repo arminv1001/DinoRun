@@ -2,6 +2,7 @@ import pygame
 #todo max Slide
 #todo hitbox kleiner
 #todo Sterben
+# TODO Münze gehört zum Spieler??
 
 class Player:
 
