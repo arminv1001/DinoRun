@@ -8,14 +8,13 @@ class GameIntroClass(GamePage):
     """
     Klasse für die erste Seite des Spiels.
     """
-    def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
+    def __init__(self, WIDTH, HEIGHT):
         """
         Konstruktor fuer die erste Seite.
         :param WIDTH: Breite des Fensters
         :param HEIGHT: Höhe des Fensters
-        :param DIFFICULTY: Schwierigkeitsgrad des Spiels
         """
-        super().__init__(WIDTH, HEIGHT, DIFFICULTY)
+        super().__init__(WIDTH, HEIGHT)
 
         self.mouseHover = False
 

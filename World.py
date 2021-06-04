@@ -3,6 +3,12 @@ import pygame
 class World:
 
     def __init__(self,WIDTH,HEIGHT,difficulty):
+        """
+        Erstellt die Spielwelt, bzw den Hintergrund
+        :param WIDTH:
+        :param HEIGHT:
+        :param difficulty:
+        """
         self.background = pygame.image.load("images/Hintergrund/background.jpg")
         self.background = pygame.transform.scale(self.background, (WIDTH, HEIGHT))
         self.width = WIDTH

@@ -2,20 +2,19 @@ import pygame
 from GamePage import GamePage
 from HighScoreDB import HighScoreDB
 
-# TODO - Difficulty entfernen ?
 
 class GameEndClass(GamePage):
     """
     Klasse für die letzte Seite. Die letzte Seite beinhaltet ein Eingabefeld und die Bestenliste.
     """
-    def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
+
+    def __init__(self, WIDTH, HEIGHT):
         """
         Konstruktor der letzten Seite
         :param WIDTH: Breite des Fensters
         :param HEIGHT: Höhe des Fensters
-        :param DIFFICULTY: Schwierigkeitsgrad des Spiels
         """
-        super().__init__(WIDTH, HEIGHT, DIFFICULTY)
+        super().__init__(WIDTH, HEIGHT)
         self.gameFont = pygame.font.Font(self.font, 20)
         self.mouseHover = False
         self.highscoreDB = HighScoreDB()

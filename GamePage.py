@@ -10,16 +10,14 @@ class GamePage:
     Enthält die abstrakten Methoden draw() und loop() die von den Kindklassen implementiert werden müssen.
     """
 
-    def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
+    def __init__(self, WIDTH, HEIGHT):
         """
         Konstruktor:
         :param WIDTH:
         :param HEIGHT:
-        :param DIFFICULTY:
         """
         self.WIDTH = WIDTH
         self.HEIGHT = HEIGHT
-        self.DIFFICULTY = DIFFICULTY
 
         self.win = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.run = True
