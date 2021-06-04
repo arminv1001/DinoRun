@@ -31,7 +31,10 @@ class GameObject:
 
     def randomSpawn(self):
         """
-        #todo rs
+        Funktion setzt die Variable spawn mit einer Wahrscheinlichkeit vo 0.01 auf True
+        :test:
+            - Statistische Untersuchung ob die Wahrscheinlichkeit mit einem Signifikanzniveau von 0.05 übereinstimmt.
+            - Es wird der richtige Datentyp in die Variable spawn geschrieben
         """
         if not self.spawn:
             self.spawn = random.random() > 0.99
@@ -40,6 +43,9 @@ class GameObject:
         """
         Erzeugt ein Rechteck um die Spielobjekte. Rechteck dient der Kollisionserkennung
         :param window: Pygame Fenster
+        :test:
+            - Richtiger Datentyp in die Variable hitbox geschrieben.
+            - Parameter window ist nicht leer bzw. ungültig
         """
         self.hitbox = pygame.Rect(self.X, self.Y, self.widthObj, self.heightObj)
         pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
@@ -48,6 +54,9 @@ class GameObject:
         """
         Fügt die Objekte zum Spielfenster hinzu.
         :param window: Pygame Fenster
+        :test:
+            - Parameter window enthält richtigen Datentyp bzw ist nicht leer.
+            - Objekt wird nach dem durchlaufen zurückgesetzt
         """
         self.randomSpawn()
         if self.spawn:

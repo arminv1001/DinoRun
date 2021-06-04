@@ -25,6 +25,9 @@ class Fence(GameObject):
         :param widthObj: Breite des Bilds
         :param heightObj: Höhe des Bilds
         :return: Fence Bild
+        :test:
+            - Ist das Bild vorhanden?
+            - Wurde das Bild geladen?
         """
         fenceImage = pygame.image.load("images/Objekte/fence.png")
         fenceImage = pygame.transform.scale(fenceImage, (widthObj, heightObj))

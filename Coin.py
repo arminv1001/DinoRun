@@ -24,6 +24,9 @@ class Coin(GameObject):
         """
         Läd das Bild für den Coin
         :return: Coin Bild
+        :test:
+            - ist Bild vorhanden
+            - wurde Bild geladen
         """
         coinImage = pygame.image.load('Images/Objekte/coin.png')
         coinImage = pygame.transform.scale(coinImage, (40, 40))
@@ -32,20 +35,20 @@ class Coin(GameObject):
     def removeCoin(self):
         """
         Die X-Koordinate wird zurückgesetzt
+
+        test:
+            - wird der Coin außerhalb des Fensters platziert
         """
         self.X = self.ResetX
 
-    def randomSpawn(self):
-        """
-        #todo rs
-        """
-        if not self.spawn:
-            self.spawn = random.random() > 0.99
-
     def place(self,window,fence):
         """
-        Fügt die Objekte zum Spielfenster hinzu.
+        Fügt den Coin zum Spielfenster hinzu. Coin darf nicht in einem Zaun platziert werden.
         :param window: Pygame Fenster
+        :param fence: Zaun
+        :test:
+            - Wurde der Coin platziert?
+            - Liegt der Coin in einem Zaun?
         """
         if fence.spawn == False or fence.X < self.widthFrame/2:
             self.randomSpawn()

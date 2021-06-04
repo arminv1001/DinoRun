@@ -37,6 +37,9 @@ class GamePage:
         :param textSize: Schriftgroeße
         :param textColor:  Schrftfarbe
         :return: Textobjekt
+        :test:
+            - Rückgabewert ist nicht leer
+            - Rückgabewert hat den richtigen Datentyp
         """
         newFont = pygame.font.Font(textFont, textSize)
         newText = newFont.render(message, 0, textColor)

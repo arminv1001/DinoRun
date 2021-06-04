@@ -5,7 +5,7 @@ from Fence import Fence
 from FlyingEnemy import FlyingEnemy
 from GamePage import GamePage
 from Player import Player
-
+# TODO Tests
 
 class GamePlayClass(GamePage):
     """
@@ -34,6 +34,9 @@ class GamePlayClass(GamePage):
         """
         Erhöht die Schwierigkeit um den Faktor 0.1 bei jedem Objekt
         -> Objekte werden schneller
+        :test:
+            - Schwierigkeit aller Objekte wird erhöht
+            - Schwierigkeit des Spielers wird auch erhöht
         """
         self.backgroundWorld.difficulty += 0.1
         for obj in self.objects:
@@ -43,6 +46,9 @@ class GamePlayClass(GamePage):
     def resetDifficulty(self):
         """
         Setzt die Schwierigkeit/Geschweindigkeit der Objekte zurück zum Startwert
+        :test:
+            - Schwierigkeit aller Objekte wird zurückgesetzt
+            - Schwierigkeit des Spielers wird auch zurückgesetzt
         """
         self.backgroundWorld.difficulty = self.difficultyReset
         for obj in self.objects:
@@ -52,6 +58,9 @@ class GamePlayClass(GamePage):
     def collision(self):
         """
         Händelt die Kollision zwischen dem Player und einem Spielobjekt.
+        :test:
+            - Wenn eine Münze eingesammtl wird, wird der Score um eins Hochgezählt
+            - Wenn eine Münze eingesammtl wird, wird der richtige Rückgabewert geliefert
         """
         for obj in self.objects:
             if self.man.checkCollision(obj.hitbox):
@@ -68,6 +77,9 @@ class GamePlayClass(GamePage):
     def resetObj(self):
         """
         Bei einem Neustart des Spiels, müssen alle Objekte auf ihre Ursprüngliche Position gesetzt werden.
+        :test:
+            - Alle Objekte werden zurückgesetzt
+            - Man wird richtig platziert
         """
         for obj in self.objects:
             obj.X = obj.ResetX

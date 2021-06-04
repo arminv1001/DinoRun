@@ -26,6 +26,9 @@ class GameEndClass(GamePage):
         :param text: String der angezeigt werden soll
         :param heightText: Höhe des Textes
         :param fontSize: Schriftgröße
+        :test:
+            - Wird der Text auf der GUI angezeigt?
+            - Stimmt die Größe des Textes?
         """
         textFormat = self.textFormat(text, self.font, fontSize, self.black)
         textRect = textFormat.get_rect()
@@ -37,6 +40,9 @@ class GameEndClass(GamePage):
         :param username: Username aus der DB
         :param score: Score aus der DB
         :param index: Platzierung
+        :test:
+            - Wird der Text richtig konkateniert?
+            - Wird der Text auf der GUI angezeigt?
         """
         text = str(index + 1).ljust(10) + username.ljust(20)
         text += score
@@ -47,6 +53,9 @@ class GameEndClass(GamePage):
     def draw(self):
         """
         Zuständig für das Zeichnen aller grafischen Objekte
+        :test:
+            - Werden alle Elemente angezeigt?
+            - Werde die richtigen Score-Einträge angezeigt?
         """
         # self.backgroundWorld.placeBackground(self.win)
         self.win.blit(self.backgroundWorld.background, (self.backgroundWorld.background1X, 0))
@@ -79,6 +88,7 @@ class GameEndClass(GamePage):
         pygame.display.update()
 
     def loop(self, score):
+        # TODO Logging - Fehler
         """
         Diese Funktion managt:
             -das Game-Over-Bild
@@ -86,6 +96,9 @@ class GameEndClass(GamePage):
 
         :param score: Anzahl der Münzen, die der User eingesammlet hat
         :return: Ob User das Fenster geschlossen hat oder nicht
+        :test:
+            - Text überschreitet nicht die größe 20
+            - Funktion gibt den Rückgabewert True zurück, wenn der Restart Button betätigt
         """
         self.userText = ""
         while True:
@@ -105,9 +118,11 @@ class GameEndClass(GamePage):
                     if event.key == pygame.K_BACKSPACE:
                         self.userText = self.userText[:-1]
                     elif event.key == pygame.K_RETURN:
-                        print("ENTER")
-                        self.highscoreDB.insertScore(self.userText, score)
-                        self.highscoreDBContent = self.highscoreDB.returnHighscoreList()
+                        if len(self.userText) > 20:
+                            print("FEHLER")
+                        elif len(self.userText) > 0:
+                            self.highscoreDB.insertScore(self.userText, score)
+                            self.highscoreDBContent = self.highscoreDB.returnHighscoreList()
                     else:
                         if (len(self.userText) < 20):
                             self.userText += event.unicode
