@@ -5,8 +5,17 @@ import pygame
 # TODO Münze gehört zum Spieler??
 
 class Player:
-
+    """
+    Klasse für die Protagonistin.
+    """
     def __init__(self, x, y, step, difficulty):
+        """
+        Konstruktor
+        :param x: x-Koordinate
+        :param y: y-Koordinate
+        :param step:
+        :param difficulty: Spielgeschwindigkeit
+        """
         self.jumpDistance = 2
         self.x = x - 48
         self.y = y - 64
@@ -27,6 +36,9 @@ class Player:
         self.maxX = 700
 
     def move(self):
+        """
+        Bewegungssteuerung
+        """
         if self.walkIndex + 1 >= 42:
             self.walkIndex = 0
 
@@ -39,7 +51,7 @@ class Player:
                 self.x += self.step
                 self.walkIndex += 1
 
-        # TODO Parameter für den Sprung einstellen
+        # Sprung
         if self.jump:
             if self.jumpIndex >= - self.jumpHight:
                 self.y -= (self.jumpIndex * abs(self.jumpIndex)) * 0.5
@@ -52,7 +64,7 @@ class Player:
             else:
                 self.jumpIndex = self.jumpHight
                 self.jump = False
-
+        # Tot-Animation
         if self.dead:
             if self.y >= 490:
                 self.deadEnd = True
@@ -64,6 +76,10 @@ class Player:
                 self.x -= self.difficulty
 
     def draw(self, window):
+        """
+        Protagonistin neu zeichen.
+        :param window: Spielfenster
+        """
         if self.jump:
             if self.left:
                 window.blit(self.jumpLeft[1], (self.x, self.y))
@@ -84,6 +100,7 @@ class Player:
             window.blit(self.standing, (self.x, self.y))
 
     def loadImage(self):
+        # Bilder für die Protagonistin laden.
         # Bildgroeße: 96x128
         self.walkRight = [pygame.image.load('Images/SpielerImages/Right/R0.png'),
                           pygame.image.load('Images/SpielerImages/Right/R1.png'),

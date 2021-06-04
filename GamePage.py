@@ -5,8 +5,18 @@ import pygame
 from World import World
 
 class GamePage:
+    """
+    Superklasse für alle Spielseiten (GameIntro, GameEnd, GamePlay)
+    Enthält die abstrakten Methoden draw() und loop() die von den Kindklassen implementiert werden müssen.
+    """
 
     def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
+        """
+        Konstruktor:
+        :param WIDTH:
+        :param HEIGHT:
+        :param DIFFICULTY:
+        """
         self.WIDTH = WIDTH
         self.HEIGHT = HEIGHT
         self.DIFFICULTY = DIFFICULTY
@@ -22,6 +32,14 @@ class GamePage:
 
 
     def textFormat(self, message, textFont, textSize, textColor):
+        """
+        Funktion, um ein Text zu erzeugen um dieses Später im Spiel darzustellen.
+        :param message: Inhalt des Textes
+        :param textFont: Schriftart
+        :param textSize: Schriftgroeße
+        :param textColor:  Schrftfarbe
+        :return: Textobjekt
+        """
         newFont = pygame.font.Font(textFont, textSize)
         newText = newFont.render(message, 0, textColor)
         return newText
@@ -29,8 +47,14 @@ class GamePage:
 
     @abstractmethod
     def draw(self):
+        """
+        Abstrakte Methode. Stellt die Objekte bei jedem Frame im Fenster dar.
+        """
         pass
 
     @abstractmethod
     def loop(self):
+        """
+        Abstrakte Methode. Spielschleife.
+        """
         pass

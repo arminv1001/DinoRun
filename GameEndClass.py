@@ -5,7 +5,9 @@ from HighScoreDB import HighScoreDB
 # TODO - Difficulty entfernen ?
 
 class GameEndClass(GamePage):
-
+    """
+    Klasse für die letzte Seite. Die letzte Seite beinhaltet ein Eingabefeld und die Bestenliste.
+    """
     def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
         """
         Konstruktor der letzten Seite
@@ -21,7 +23,7 @@ class GameEndClass(GamePage):
 
     def printTitle(self, text, heightText, fontSize):
         """
-        Zeigt einen Text an auf der GUI an
+        Zeigt einen Text auf der GUI an
         :param text: String der angezeigt werden soll
         :param heightText: Höhe des Textes
         :param fontSize: Schriftgröße

@@ -12,20 +12,22 @@ from GameIntroClass import  GameIntroClass
 
 if __name__ == "__main__":
 
+    # Konstanten
     HEIGHT = 500
     WIDTH = 800
     DIFFICULTY = 2
 
     pygame.init()
     pygame.mixer.music.load("Sounds/theme_music.wav")
-    # TODO Finn hier auskommentieren wenn kein bock auf Musik
+    # Musik auskommentieren wenn nicht erwünscht
     pygame.mixer.music.play(-1)
 
-    #gameIntro(WIDTH, HEIGHT)
+    #Objekte instanziieren
     gameIntro = GameIntroClass(WIDTH, HEIGHT, DIFFICULTY)
     gamePlay = GamePlayClass(WIDTH, HEIGHT, DIFFICULTY)
     gameEnd = GameEndClass(WIDTH, HEIGHT, DIFFICULTY)
 
+    # Spielschleife
     run = gameIntro.loop()
 
     while run:
@@ -35,9 +37,5 @@ if __name__ == "__main__":
 
     pygame.quit()
     gameEnd.highscoreDB.conn.close()
-
-
-
-    #gameloop(WIDTH, HEIGHT, DIFFICULTY)
 
 

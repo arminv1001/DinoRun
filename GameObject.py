@@ -3,8 +3,21 @@ import random
 
 
 class GameObject:
-
+    """
+    Superklasse für alle im Spiel vorhandenen Objekte.
+    """
     def __init__(self, WIDTH, HEIGHT, difficulty, imageObj, widthObj, heightObj, Y):
+        """
+        Konstruktor
+
+        :param WIDTH: Breite des Fensters:
+        :param HEIGHT: Höhe des Fensters
+        :param difficulty: Spielschwierigkeit.
+        :param imageObj:  Bildobjekte
+        :param widthObj:  Breite des Objektes
+        :param heightObj:  Höhe des Objektes
+        :param Y: y-Position des Objektes
+        """
         self.widthFrame = WIDTH
         self.heightFrame = HEIGHT
         self.widthObj = widthObj
@@ -19,22 +32,23 @@ class GameObject:
 
     def randomSpawn(self):
         """
-        :return:
+        #todo rs
         """
         if not self.spawn:
             self.spawn = random.random() > 0.99
 
     def drawHitbox(self, window):
         """
-        :return:
+        Erzeugt ein Rechteck um die Spielobjekte. Rechteck dient der Kollisionserkennung
+        :param window: Pygame Fenster
         """
         self.hitbox = pygame.Rect(self.X, self.Y, self.widthObj, self.heightObj)
         pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def place(self, window):
         """
+        Fügt die Objekte zum Spielfenster hinzu.
         :param window: Pygame Fenster
-        :return: -
         """
         self.randomSpawn()
         if self.spawn:
