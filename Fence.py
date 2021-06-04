@@ -12,10 +12,10 @@ class Fence(GameObject):
         :param HEIGHT: Höhe des Fensters
         :param DIFFICULTY: Schwierigkeitsgrad des Spiels
         """
-        widthObj = int(WIDTH / 8)
-        heightObj = int(HEIGHT / 8)
+        widthObj = int(WIDTH / 9)
+        heightObj = int(HEIGHT / 9)
         fenceImage = self.loadImage(widthObj, heightObj)
-        Y = (HEIGHT * (1 / 2) + heightObj)+40
+        Y = (HEIGHT * (1 / 2) + heightObj)+100
         super().__init__(WIDTH, HEIGHT, DIFFICULTY, fenceImage, widthObj, heightObj, Y)
 
     @staticmethod

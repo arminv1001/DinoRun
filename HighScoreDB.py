@@ -36,9 +36,9 @@ class HighScoreDB:
     def returnHighscoreList(self):
         # TODO Return Kommentar vergewissern
         """
-        Gibt die aktuelle Highscore-Tabelle zurück
-        :return: Inhalt der Highscore Tabelle, als Liste mit Tupeln
-                https://stackoverflow.com/questions/4174941/how-to-sort-a-list-of-lists-by-a-specific-index-of-the-inner-list
+        Gibt die aktuelle Highscore-Tabelle zurück. Sotiert nach Score.
+        :return: Inhalt der Highscore Tabelle, als Liste - Reihe als Tupel. Sortiert nach Score.
+        https://stackoverflow.com/questions/4174941/how-to-sort-a-list-of-lists-by-a-specific-index-of-the-inner-list
         """
         sqlSelect = f"SELECT * FROM {self.tableName}"
         cursor = self.conn.cursor()

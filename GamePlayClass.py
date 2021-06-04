@@ -7,8 +7,6 @@ from GamePage import GamePage
 from Player import Player
 
 
-# todo spawn
-
 class GamePlayClass(GamePage):
     """
     Klasse für das Spielfenster.
