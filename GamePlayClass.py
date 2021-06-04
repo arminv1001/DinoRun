@@ -91,10 +91,10 @@ class GamePlayClass(GamePage):
         scoreRect = score.get_rect()
         self.win.blit(score, (self.WIDTH - (scoreRect[2] + 10), 30))
 
-        # Objekte instanziieren
-        self.fence.place(self.win)
+        # Objekte platzieren
+        self.coin.place(self.win,self.fence)
         self.flyingEnemy.place(self.win)
-        self.coin.place(self.win)
+        self.fence.place(self.win)
         self.man.draw(self.win)
         self.man.drawHitbox(self.win)
 

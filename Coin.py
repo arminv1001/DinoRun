@@ -1,3 +1,5 @@
+import random
+
 import pygame
 from GameObject import GameObject
 
@@ -32,3 +34,26 @@ class Coin(GameObject):
         Die X-Koordinate wird zurückgesetzt
         """
         self.X = self.ResetX
+
+    def randomSpawn(self):
+        """
+        #todo rs
+        """
+        if not self.spawn:
+            self.spawn = random.random() > 0.99
+
+    def place(self,window,fence):
+        """
+        Fügt die Objekte zum Spielfenster hinzu.
+        :param window: Pygame Fenster
+        """
+        if fence.spawn == False or fence.X < self.widthFrame/2:
+            self.randomSpawn()
+        if self.spawn:
+            window.blit(self.image, (self.X, self.Y))
+            self.X -= 1 * self.difficulty
+            self.drawHitbox(window)
+            if self.X <= -self.widthObj:
+                self.spawn = False
+                self.X = self.widthFrame + 10
+
