@@ -23,7 +23,7 @@ class GamePage:
         self.run = True
         self.clock = pygame.time.Clock()
         self.font = "LEMONCHI.ttf"
-        self.backgroundWorld = World(self.WIDTH, self.HEIGHT, self.DIFFICULTY)
+        self.backgroundWorld = World(self.WIDTH, self.HEIGHT, 2)
 
         self.white = (255, 255, 255)
         self.black = (0, 0, 0)

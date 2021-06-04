@@ -1,8 +1,8 @@
 import pygame
 #todo max Slide
-#todo hitbox kleiner
+#todo höher springen
 #todo Sterben
-# TODO Münze gehört zum Spieler??
+
 
 class Player:
     """
@@ -138,7 +138,7 @@ class Player:
         if self.down:
             playerDownDiv = 2
             playerDownHigh = 100 / 2
-        self.rect = pygame.Rect(self.x , self.y + 20+ playerDownHigh, 96, 128 / playerDownDiv)
+        self.rect = pygame.Rect(self.x+10 , self.y + 20+ playerDownHigh, 80, 110 / playerDownDiv)
         pygame.draw.rect(window, (255, 0, 0), self.rect, 2)
 
     def checkCollision(self, objRect):

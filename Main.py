@@ -22,9 +22,9 @@ if __name__ == "__main__":
     pygame.mixer.music.play(-1)
 
     # Objekte instanziieren
-    gameIntro = GameIntroClass(WIDTH, HEIGHT, DIFFICULTY)
+    gameIntro = GameIntroClass(WIDTH, HEIGHT)
     gamePlay = GamePlayClass(WIDTH, HEIGHT, DIFFICULTY)
-    gameEnd = GameEndClass(WIDTH, HEIGHT, DIFFICULTY)
+    gameEnd = GameEndClass(WIDTH, HEIGHT)
 
     # Spielschleife
     run = gameIntro.loop()
