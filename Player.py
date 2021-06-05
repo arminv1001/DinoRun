@@ -38,6 +38,9 @@ class Player:
     def move(self):
         """
         Bewegungssteuerung
+        :test:
+            - walkIndex hat den richtigen Wert angenommen, wenn der Spieler sich nach Links bewegt
+            - Das Attribut X hat den richtigen Wert angenommen, während der Spieler sich nicht bewegt hat
         """
         if self.walkIndex + 1 >= 42:
             self.walkIndex = 0
@@ -76,9 +79,11 @@ class Player:
                 self.x -= self.difficulty
 
     def draw(self, window):
+        # TODO Test
         """
         Protagonistin neu zeichen.
         :param window: Spielfenster
+        :test:
         """
         if self.jump:
             if self.left:
@@ -100,8 +105,13 @@ class Player:
             window.blit(self.standing, (self.x, self.y))
 
     def loadImage(self):
-        # Bilder für die Protagonistin laden.
-        # Bildgroeße: 96x128
+        """
+        Bilder für die Protagonistin laden.
+        Bildgroeße: 96x128
+        :test:
+            - wurden die Richtigen Bilder geladen
+            - besitzen die Attribute den Richtigen Datentyp
+        """
         self.walkRight = [pygame.image.load('Images/SpielerImages/Right/R0.png'),
                           pygame.image.load('Images/SpielerImages/Right/R1.png'),
                           pygame.image.load('Images/SpielerImages/Right/R2.png'),
@@ -133,6 +143,13 @@ class Player:
 
 
     def drawHitbox(self, window):
+        """
+        Die Hitbox um den Player wird erstellt
+        :param window: Fenster - GUI
+        :test:
+            - Hitbox wird verkleinert, wenn Spieler sicht duckt
+            - Hitbox hat die richtige Größe
+        """
         playerDownDiv = 1
         playerDownHigh = 0
         if self.down:
@@ -142,9 +159,15 @@ class Player:
         pygame.draw.rect(window, (255, 0, 0), self.rect, 2)
 
     def checkCollision(self, objRect):
-        if self.rect.colliderect(objRect):
-            return True
-        else:
-            return False
+        """
+        Es wird vergliechen ob die Hitbox des Spielers die Hitbox eines Objektes schneidet
+        :param objRect: Objekt vom Typ GomeObject
+        :return: Wenn beide miteinander Kollidieren wird ein boolescher Wert zurückgegeben. True - Kollision
+        :test:
+            - Richtiger Rückgabewert?
+            - Kolliosionserkennung funktioniert?
+        """
+        return self.rect.colliderect(objRect)
+
 
 
