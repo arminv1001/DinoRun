@@ -21,6 +21,9 @@ class FlyingEnemy(GameObject):
         """
         Läd das Bild für den fliegenden Gegner
         :return: FlyingEnemy Bild
+        :test:
+            - ist Bild vorhanden
+            - wurde Bild geladen
         """
         flyImage = pygame.image.load("images/Objekte/flyMan_fly.png")
         flyImage = pygame.transform.scale(flyImage, (widthObj, heightObj))
@@ -31,7 +34,9 @@ class FlyingEnemy(GameObject):
         Der Gegner wird platziert. Funktion muss überschrieben werden,
         weil er eine höhere Geschweindigkeit hat als alle anderen Objekte
         :param window: Pygame Fenster
-        :return: -
+        :test:
+            - Wurde der Gegner platziert?
+            - fliegt er schneller als sich das Bild bewegt?
         """
         self.randomSpawn()
         if self.spawn:

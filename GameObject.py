@@ -9,7 +9,6 @@ class GameObject:
     def __init__(self, WIDTH, HEIGHT, difficulty, imageObj, widthObj, heightObj, Y):
         """
         Konstruktor
-
         :param WIDTH: Breite des Fensters:
         :param HEIGHT: Höhe des Fensters
         :param difficulty: Spielschwierigkeit.
@@ -24,7 +23,7 @@ class GameObject:
         self.heightObj = heightObj
         self.difficulty = difficulty
         self.Y = Y
-        self.ResetX = WIDTH + self.widthObj + 10
+        self.ResetX = WIDTH + self.widthObj + 10 + random.randint(10,1000)
         self.X = self.ResetX
         self.image = imageObj
         self.hitbox = pygame.Rect(self.X, self.Y, self.widthObj, self.heightObj)
@@ -32,7 +31,10 @@ class GameObject:
 
     def randomSpawn(self):
         """
-        #todo rs
+        Funktion setzt die Variable spawn mit einer Wahrscheinlichkeit vo 0.01 auf True
+        :test:
+            - Statistische Untersuchung ob die Wahrscheinlichkeit mit einem Signifikanzniveau von 0.05 übereinstimmt.
+            - Es wird der richtige Datentyp in die Variable spawn geschrieben
         """
         if not self.spawn:
             self.spawn = random.random() > 0.99
@@ -41,6 +43,9 @@ class GameObject:
         """
         Erzeugt ein Rechteck um die Spielobjekte. Rechteck dient der Kollisionserkennung
         :param window: Pygame Fenster
+        :test:
+            - Richtiger Datentyp in die Variable hitbox geschrieben.
+            - Parameter window ist nicht leer bzw. ungültig
         """
         self.hitbox = pygame.Rect(self.X, self.Y, self.widthObj, self.heightObj)
         pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
@@ -49,6 +54,9 @@ class GameObject:
         """
         Fügt die Objekte zum Spielfenster hinzu.
         :param window: Pygame Fenster
+        :test:
+            - Parameter window enthält richtigen Datentyp bzw ist nicht leer.
+            - Objekt wird nach dem durchlaufen zurückgesetzt
         """
         self.randomSpawn()
         if self.spawn:

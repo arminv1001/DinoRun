@@ -12,10 +12,10 @@ class Fence(GameObject):
         :param HEIGHT: Höhe des Fensters
         :param DIFFICULTY: Schwierigkeitsgrad des Spiels
         """
-        widthObj = int(WIDTH / 7)
-        heightObj = int(HEIGHT / 7)
+        widthObj = int(WIDTH / 9)
+        heightObj = int(HEIGHT / 9)
         fenceImage = self.loadImage(widthObj, heightObj)
-        Y = (HEIGHT * (1 / 2) + heightObj) + 30
+        Y = (HEIGHT * (1 / 2) + heightObj)+100
         super().__init__(WIDTH, HEIGHT, DIFFICULTY, fenceImage, widthObj, heightObj, Y)
 
     @staticmethod
@@ -25,10 +25,14 @@ class Fence(GameObject):
         :param widthObj: Breite des Bilds
         :param heightObj: Höhe des Bilds
         :return: Fence Bild
+        :test:
+            - Ist das Bild vorhanden?
+            - Wurde das Bild geladen?
         """
         fenceImage = pygame.image.load("images/Objekte/fence.png")
         fenceImage = pygame.transform.scale(fenceImage, (widthObj, heightObj))
         return fenceImage
+
 
 
 

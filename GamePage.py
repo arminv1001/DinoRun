@@ -10,22 +10,20 @@ class GamePage:
     Enthält die abstrakten Methoden draw() und loop() die von den Kindklassen implementiert werden müssen.
     """
 
-    def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
+    def __init__(self, WIDTH, HEIGHT):
         """
         Konstruktor:
         :param WIDTH:
         :param HEIGHT:
-        :param DIFFICULTY:
         """
         self.WIDTH = WIDTH
         self.HEIGHT = HEIGHT
-        self.DIFFICULTY = DIFFICULTY
 
         self.win = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.run = True
         self.clock = pygame.time.Clock()
         self.font = "LEMONCHI.ttf"
-        self.backgroundWorld = World(self.WIDTH, self.HEIGHT, self.DIFFICULTY)
+        self.backgroundWorld = World(self.WIDTH, self.HEIGHT, 2)
 
         self.white = (255, 255, 255)
         self.black = (0, 0, 0)
@@ -39,6 +37,9 @@ class GamePage:
         :param textSize: Schriftgroeße
         :param textColor:  Schrftfarbe
         :return: Textobjekt
+        :test:
+            - Rückgabewert ist nicht leer
+            - Rückgabewert hat den richtigen Datentyp
         """
         newFont = pygame.font.Font(textFont, textSize)
         newText = newFont.render(message, 0, textColor)

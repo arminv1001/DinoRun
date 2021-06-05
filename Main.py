@@ -3,12 +3,11 @@ import pygame
 # todo Kommentare
 # todo Test
 # todo Readme
-# todo requirement
-# TODO Difficulty in abhänigkeit von der Ges
+
 
 from GameEndClass import GameEndClass
 from GamePlayClass import GamePlayClass
-from GameIntroClass import  GameIntroClass
+from GameIntroClass import GameIntroClass
 
 if __name__ == "__main__":
 
@@ -22,20 +21,17 @@ if __name__ == "__main__":
     # Musik auskommentieren wenn nicht erwünscht
     pygame.mixer.music.play(-1)
 
-    #Objekte instanziieren
-    gameIntro = GameIntroClass(WIDTH, HEIGHT, DIFFICULTY)
+    # Objekte instanziieren
+    gameIntro = GameIntroClass(WIDTH, HEIGHT)
     gamePlay = GamePlayClass(WIDTH, HEIGHT, DIFFICULTY)
-    gameEnd = GameEndClass(WIDTH, HEIGHT, DIFFICULTY)
+    gameEnd = GameEndClass(WIDTH, HEIGHT)
 
     # Spielschleife
     run = gameIntro.loop()
-
     while run:
-            run,score =  gamePlay.loop()
-            if run:
-                run = gameEnd.loop(score)
+        run, score = gamePlay.loop()
+        if run:
+            run = gameEnd.loop(score)
 
     pygame.quit()
     gameEnd.highscoreDB.conn.close()
-
-

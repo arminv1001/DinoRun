@@ -5,13 +5,13 @@ from Fence import Fence
 from FlyingEnemy import FlyingEnemy
 from GamePage import GamePage
 from Player import Player
-
-# todo spawn
+# TODO Tests
 
 class GamePlayClass(GamePage):
     """
     Klasse für das Spielfenster.
     """
+
     def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
         """
         Konstruktor
@@ -19,10 +19,10 @@ class GamePlayClass(GamePage):
         :param HEIGHT: Höhe des Fensters
         :param DIFFICULTY: Schwierigkeitsgrad des Spiels
         """
-        super().__init__(WIDTH, HEIGHT, DIFFICULTY)
+        super().__init__(WIDTH, HEIGHT)
 
         self.valScore = str(0)
-
+        self.difficultyReset = DIFFICULTY
         self.man = Player(WIDTH / 2, HEIGHT - 150, step=4, difficulty=DIFFICULTY)
         self.fence = Fence(WIDTH, HEIGHT, DIFFICULTY)
         self.coin = Coin(WIDTH, HEIGHT, DIFFICULTY)
@@ -30,10 +30,37 @@ class GamePlayClass(GamePage):
 
         self.objects = [self.fence, self.flyingEnemy, self.coin]
 
+    def increaseDifficulty(self):
+        """
+        Erhöht die Schwierigkeit um den Faktor 0.1 bei jedem Objekt
+        -> Objekte werden schneller
+        :test:
+            - Schwierigkeit aller Objekte wird erhöht
+            - Schwierigkeit des Spielers wird auch erhöht
+        """
+        self.backgroundWorld.difficulty += 0.1
+        for obj in self.objects:
+            obj.difficulty += 0.1
+        self.man.difficulty += 0.1
+
+    def resetDifficulty(self):
+        """
+        Setzt die Schwierigkeit/Geschweindigkeit der Objekte zurück zum Startwert
+        :test:
+            - Schwierigkeit aller Objekte wird zurückgesetzt
+            - Schwierigkeit des Spielers wird auch zurückgesetzt
+        """
+        self.backgroundWorld.difficulty = self.difficultyReset
+        for obj in self.objects:
+            obj.difficulty = self.difficultyReset
+        self.man.difficulty = self.difficultyReset
+
     def collision(self):
         """
         Händelt die Kollision zwischen dem Player und einem Spielobjekt.
-
+        :test:
+            - Wenn eine Münze eingesammtl wird, wird der Score um eins Hochgezählt
+            - Wenn eine Münze eingesammtl wird, wird der richtige Rückgabewert geliefert
         """
         for obj in self.objects:
             if self.man.checkCollision(obj.hitbox):
@@ -42,15 +69,17 @@ class GamePlayClass(GamePage):
                     self.valScore = int(self.valScore)
                     self.valScore += 1
                     self.coin.removeCoin()
+                    self.increaseDifficulty()
                     return False
                 return True
         return False
 
-
-
     def resetObj(self):
         """
         Bei einem Neustart des Spiels, müssen alle Objekte auf ihre Ursprüngliche Position gesetzt werden.
+        :test:
+            - Alle Objekte werden zurückgesetzt
+            - Man wird richtig platziert
         """
         for obj in self.objects:
             obj.X = obj.ResetX
@@ -72,10 +101,10 @@ class GamePlayClass(GamePage):
         scoreRect = score.get_rect()
         self.win.blit(score, (self.WIDTH - (scoreRect[2] + 10), 30))
 
-        # Objekte instanziieren
-        self.fence.place(self.win)
+        # Objekte platzieren
+        self.coin.place(self.win,self.fence)
         self.flyingEnemy.place(self.win)
-        self.coin.place(self.win)
+        self.fence.place(self.win)
         self.man.draw(self.win)
         self.man.drawHitbox(self.win)
 
@@ -117,12 +146,12 @@ class GamePlayClass(GamePage):
             if not self.man.jump:
                 if keys[pygame.K_SPACE]:
                     self.man.jump = True
-            #Spieler bewegung verarbeiten
+            # Spieler bewegung verarbeiten
             self.man.move()
-            #Spiel neu Zeichnen
+            # Spiel neu Zeichnen
             self.draw()
 
-            #Kollisionshandhabung
+            # Kollisionshandhabung
             collBool = self.collision()
             if collBool:
                 # Tot-Animation
@@ -130,11 +159,10 @@ class GamePlayClass(GamePage):
                 pygame.mixer.Sound.play(pygame.mixer.Sound("Sounds/HumanHurt.wav"))
 
             if self.man.deadEnd:
-                #Spiel beenden, Objekte zurücksetzen und Score speichern.
+                # Spiel beenden, Objekte zurücksetzen und Score speichern.
                 self.resetObj()
                 self.man.x = self.man.maxX / 2
                 tmp_score = self.valScore
                 self.valScore = str(0)
-                return True,tmp_score
-
-
+                self.resetDifficulty()
+                return True, tmp_score
