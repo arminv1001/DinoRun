@@ -16,7 +16,6 @@ class Coin(GameObject):
         heightObj = 40
         coinImage = self.loadImage()
         Y = 370
-
         super().__init__(WIDTH, HEIGHT, DIFFICULTY, coinImage, widthObj, heightObj, Y)
 
     @staticmethod
@@ -50,7 +49,7 @@ class Coin(GameObject):
             - Wurde der Coin platziert?
             - Liegt der Coin in einem Zaun?
         """
-        if fence.spawn == False or fence.X < self.widthFrame/2:
+        if not fence.spawn:
             self.randomSpawn()
         if self.spawn:
             window.blit(self.image, (self.X, self.Y))
@@ -59,4 +58,6 @@ class Coin(GameObject):
             if self.X <= -self.widthObj:
                 self.spawn = False
                 self.X = self.widthFrame + 10
+        if fence.hitbox.colliderect(self.hitbox):
+            self.X = self.ResetX
 

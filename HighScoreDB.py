@@ -43,7 +43,8 @@ class HighScoreDB:
         # TODO Return Kommentar vergewissern
         """
         Gibt die aktuelle Highscore-Tabelle zurück. Sotiert nach Score.
-        :return: Inhalt der Highscore Tabelle, als Liste - Reihe als Tupel. Sortiert nach Score.
+        :return: Inhalt der Highscore Tabelle,
+        als Liste mit Tupel in denen sich die einzelenen Reihen befinden. Sortiert nach Score.
         :quelle: https://stackoverflow.com/questions/4174941/how-to-sort-a-list-of-lists-by-a-specific-index-of-the-inner-list
         :test:
             - Richtige Daten werden von der Datenbank zurückgegeben
