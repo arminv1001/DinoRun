@@ -1,5 +1,5 @@
 import pygame
-
+import logging
 from GamePage import GamePage
 from World import World
 
@@ -15,7 +15,6 @@ class GameIntroClass(GamePage):
         :param HEIGHT: Höhe des Fensters
         """
         super().__init__(WIDTH, HEIGHT)
-
         self.mouseHover = False
 
 
@@ -58,10 +57,12 @@ class GameIntroClass(GamePage):
             for event in pygame.event.get():
                 xMouse, yMouse = pygame.mouse.get_pos()
                 if event.type == pygame.QUIT:
+                    logging.info("Fenster geschlossen")
                     return False
                 if self.startRect.collidepoint(xMouse, yMouse):
                     self.mouseHover = True
                 else:
                     self.mouseHover = False
                 if event.type == pygame.MOUSEBUTTONUP and self.mouseHover:
+                    logging.info("Game Start")
                     return True
