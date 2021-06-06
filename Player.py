@@ -1,6 +1,5 @@
 import pygame
 #todo max Slide
-#todo höher springen
 #todo Sterben
 
 
@@ -34,6 +33,8 @@ class Player:
         self.loadImage()
         self.rect = pygame.Rect(self.x, self.y, 96, 128)
         self.maxX = 700
+
+        self.DEBUG = False
 
     def move(self):
         """
@@ -79,11 +80,11 @@ class Player:
                 self.x -= self.difficulty
 
     def draw(self, window):
-        # TODO Test
         """
         Protagonistin neu zeichen.
         :param window: Spielfenster
-        :test:
+        :test:  - Werden die Booleanwerte richtig verarbeitet.
+                -  Die richtigen Bilder werden zu der passenden Bewegung geladen.
         """
         if self.jump:
             if self.left:
@@ -99,7 +100,6 @@ class Player:
             if self.down:
                 window.blit(self.downRight, (self.x, self.y))
             else:
-                # TODO muss besser
                 window.blit(self.walkRight[self.walkIndex // 6], (self.x, self.y))
         else:
             if self.down:
@@ -159,8 +159,9 @@ class Player:
         if self.down:
             playerDownDiv = 2
             playerDownHigh = 100 / 2
-        self.rect = pygame.Rect(self.x+10 , self.y + 20+ playerDownHigh, 80, 110 / playerDownDiv)
-        pygame.draw.rect(window, (255, 0, 0), self.rect, 2)
+        self.rect = pygame.Rect(self.x + 10, self.y + 20 + playerDownHigh, 80, 110 / playerDownDiv - 15)
+        if self.DEBUG:
+            pygame.draw.rect(window, (255, 0, 0), self.rect, 2)
 
     def checkCollision(self, objRect):
         """

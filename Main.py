@@ -1,11 +1,8 @@
 import pygame
 
-# todo Kommentare
-# todo Test
-# todo Readme
-# todo Logs
-# todo Requirements
-# todo Ordner Struktur
+
+
+
 
 
 from GameEndClass import GameEndClass

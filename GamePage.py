@@ -22,7 +22,7 @@ class GamePage:
         self.win = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
         self.run = True
         self.clock = pygame.time.Clock()
-        self.font = "LEMONCHI.ttf"
+        self.font = "Font/LEMONCHI.ttf"
         self.backgroundWorld = World(self.WIDTH, self.HEIGHT, 2)
 
         self.white = (255, 255, 255)

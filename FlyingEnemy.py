@@ -4,7 +4,7 @@ from GameObject import GameObject
 class FlyingEnemy(GameObject):
     def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
         """
-        Konstruktor für FlyingEnemy. Erstellt einen Gegner, welcher fliegt und Spieler unten durch muss.
+        Konstruktor für FlyingEnemy. Erstellt einen Gegner, welcher fliegt. Der Spieler muss sich ducken um dieses auszuweichen.
         :param WIDTH: Breite des Fensters
         :param HEIGHT: Höhe des Fensters
         :param DIFFICULTY: Schwierigkeitsgrad des Spiels
@@ -32,7 +32,7 @@ class FlyingEnemy(GameObject):
     def place(self, window):
         """
         Der Gegner wird platziert. Funktion muss überschrieben werden,
-        weil er eine höhere Geschweindigkeit hat als alle anderen Objekte
+        weil er eine höhere Geschweindigkeit hat als alle anderen Objekte. Der gegner bewegt sich auf den Spieler zu.
         :param window: Pygame Fenster
         :test:
             - Wurde der Gegner platziert?

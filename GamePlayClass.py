@@ -6,7 +6,7 @@ from Fence import Fence
 from FlyingEnemy import FlyingEnemy
 from GamePage import GamePage
 from Player import Player
-# TODO Tests
+
 
 class GamePlayClass(GamePage):
     """
@@ -93,6 +93,8 @@ class GamePlayClass(GamePage):
     def draw(self):
         """
         Spielobjekte werden dargestellt
+        test: - Der aktuelle Coinscore wird angezeigt
+              - Alle Spielobjekte werden platziert
         """
         # Hintergrund
         self.backgroundWorld.placeBackground(self.win)
@@ -118,6 +120,8 @@ class GamePlayClass(GamePage):
         Spielschleife.
         Fragt in jedem Frame Nutzereingaben und Kollision ab.
         :returns: Spielscore und Kollisionsboolean
+        test: - Die Steuerung des Nutzers wird richtig verarbeitet
+              - Die Collision wird erkannt.
         """
         gameLoop = True
         while gameLoop:

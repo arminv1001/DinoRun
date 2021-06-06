@@ -29,9 +29,11 @@ class GameObject:
         self.hitbox = pygame.Rect(self.X, self.Y, self.widthObj, self.heightObj)
         self.spawn = False
 
+        self.DEBUG = False
+
     def randomSpawn(self):
         """
-        Funktion setzt die Variable spawn mit einer Wahrscheinlichkeit vo 0.01 auf True
+        Funktion setzt die Variable spawn mit einer Wahrscheinlichkeit von 0.01 auf True
         :test:
             - Statistische Untersuchung ob die Wahrscheinlichkeit mit einem Signifikanzniveau von 0.05 übereinstimmt.
             - Es wird der richtige Datentyp in die Variable spawn geschrieben
@@ -48,7 +50,8 @@ class GameObject:
             - Parameter window ist nicht leer bzw. ungültig
         """
         self.hitbox = pygame.Rect(self.X, self.Y, self.widthObj, self.heightObj)
-        pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+        if self.DEBUG:
+            pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def place(self, window):
         """

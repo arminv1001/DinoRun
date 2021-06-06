@@ -6,7 +6,8 @@ from HighScoreDB import HighScoreDB
 
 class GameEndClass(GamePage):
     """
-    Klasse für die letzte Seite. Die letzte Seite beinhaltet ein Eingabefeld und die Bestenliste.
+    Klasse für die letzte Seite.
+    Die letzte Seite beinhaltet ein Eingabefeld und die Bestenliste.
     """
 
     def __init__(self, WIDTH, HEIGHT):

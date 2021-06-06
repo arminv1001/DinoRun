@@ -7,7 +7,7 @@ class Fence(GameObject):
     def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
         """
         Konstruktor für die Klasse Fence - erstellt einen Zaun, über den der Spieler
-        hnüber springen  soll
+        hinüber springen  soll
         :param WIDTH: Breite des Fensters
         :param HEIGHT: Höhe des Fensters
         :param DIFFICULTY: Schwierigkeitsgrad des Spiels

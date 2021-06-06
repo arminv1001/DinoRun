@@ -33,10 +33,11 @@ class Coin(GameObject):
 
     def removeCoin(self):
         """
-        Die X-Koordinate wird zurückgesetzt
+        Die X-Koordinate des Coins wird zurückgesetzt
 
         test:
             - wird der Coin außerhalb des Fensters platziert
+            - wird er zurückgesetzt
         """
         self.X = self.ResetX
 

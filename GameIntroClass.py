@@ -23,7 +23,7 @@ class GameIntroClass(GamePage):
         Funktion zeichnet alle grafischen Objekte der ersten Seite.
         :test:
             - Funktion wird ohne Fehlermeldung durchgeführt
-            - Start Button ändert seine Farben, wenn die Maus drüber Hovert
+            - Start Button ändert seine Farbe, wenn die Maus drüber Hovert
         """
         self.win.blit(self.backgroundWorld.background, (self.backgroundWorld.background1X, 0))
         self.win.blit(self.backgroundWorld.background, (self.backgroundWorld.background2X, 0))
@@ -47,10 +47,10 @@ class GameIntroClass(GamePage):
 
     def loop(self):
         """
-        Spielschleife, reagiert auf eingaben und ruft die draw()-Funktion auf.
+        Spielschleife, reagiert auf Eingaben und ruft die draw()-Funktion auf.
         :test:
             - Wenn das Fenster geschloßen wird, liefert die Funktion den Rückgabewert False zurück
-            - Wenn der Start Button gedürckt wird, wird der Rückgabewert True zurückgegeben
+            - Wenn der Start Button gedrückt wird, wird der Rückgabewert True zurückgegeben
         """
         while True:
             self.draw()
