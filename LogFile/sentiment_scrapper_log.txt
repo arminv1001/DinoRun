@@ -13,3 +13,48 @@ INFO - Münze eingesammelt
  Score: 1
 INFO - Spieler tot
 INFO - Fenster geschlossen
+INFO - ----------------------------
+INFO - GUI Start
+INFO - Game Start
+INFO - Spieler tot
+INFO - Fenster geschlossen
+INFO - ----------------------------
+INFO - GUI Start
+INFO - Game Start
+INFO - Münze eingesammelt
+ Score: 1
+INFO - Fenster schließen
+INFO - ----------------------------
+INFO - GUI Start
+INFO - Game Start
+INFO - Spieler tot
+INFO - Fenster geschlossen
+INFO - ----------------------------
+INFO - GUI Start
+INFO - Game Start
+INFO - Fenster schließen
+INFO - ----------------------------
+INFO - GUI Start
+INFO - Game Start
+INFO - Spieler tot
+INFO - Fenster geschlossen
+INFO - ----------------------------
+INFO - GUI Start
+INFO - Game Start
+INFO - Spieler tot
+INFO - Restart
+INFO - Spieler tot
+INFO - Fenster geschlossen
+INFO - ----------------------------
+INFO - GUI Start
+INFO - Game Start
+INFO - Spieler tot
+INFO - Restart
+INFO - Münze eingesammelt
+ Score: 1
+INFO - Spieler tot
+INFO - Fenster geschlossen
+INFO - ----------------------------
+INFO - GUI Start
+INFO - Game Start
+INFO - Fenster schließen

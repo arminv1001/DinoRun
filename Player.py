@@ -33,6 +33,9 @@ class Player:
         self.rect = pygame.Rect(self.x, self.y, 96, 128)
         self.maxX = 700
 
+        self.slideCount = 0
+        self.slideCoolDown = 60
+
         self.DEBUG = False
 
     def move(self):

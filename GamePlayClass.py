@@ -145,10 +145,16 @@ class GamePlayClass(GamePage):
                 self.man.right = False
                 self.man.left = False
 
-            if keys[pygame.K_DOWN]:
+            if keys[pygame.K_DOWN] and self.man.slideCount < 120:
                 self.man.down = True
+                self.man.slideCount += 1
+                print(self.man.slideCount)
             else:
                 self.man.down = False
+                self.man.slideCoolDown -= 1
+                if self.man.slideCoolDown == 0:
+                    self.man.slideCount = 0
+                    self.man.slideCoolDown = 60
 
             if not self.man.jump:
                 if keys[pygame.K_SPACE]:
