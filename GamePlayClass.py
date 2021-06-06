@@ -73,7 +73,6 @@ class GamePlayClass(GamePage):
                     self.increaseDifficulty()
                     logging.info("Münze eingesammelt\n Score: " + str(self.valScore))
                     return False
-                logging.info("Spieler tot")
                 return True
         return False
 
@@ -173,4 +172,5 @@ class GamePlayClass(GamePage):
                 tmp_score = self.valScore
                 self.valScore = str(0)
                 self.resetDifficulty()
+                logging.info("Spieler tot")
                 return True, tmp_score
