@@ -58,3 +58,10 @@ INFO - ----------------------------
 INFO - GUI Start
 INFO - Game Start
 INFO - Fenster schließen
+INFO - ----------------------------
+INFO - GUI Start
+INFO - Game Start
+INFO - Spieler tot
+INFO - Restart
+INFO - Spieler tot
+INFO - Fenster geschlossen

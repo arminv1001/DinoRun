@@ -148,7 +148,6 @@ class GamePlayClass(GamePage):
             if keys[pygame.K_DOWN] and self.man.slideCount < 120:
                 self.man.down = True
                 self.man.slideCount += 1
-                print(self.man.slideCount)
             else:
                 self.man.down = False
                 self.man.slideCoolDown -= 1
