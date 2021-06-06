@@ -1,4 +1,5 @@
 import pygame
+import logging
 from GamePage import GamePage
 from HighScoreDB import HighScoreDB
 
@@ -15,6 +16,7 @@ class GameEndClass(GamePage):
         :param HEIGHT: Höhe des Fensters
         """
         super().__init__(WIDTH, HEIGHT)
+        self.scoreInsert = False
         self.gameFont = pygame.font.Font(self.font, 20)
         self.mouseHover = False
         self.highscoreDB = HighScoreDB()
@@ -107,22 +109,30 @@ class GameEndClass(GamePage):
                 xMouse, yMouse = pygame.mouse.get_pos()
                 if event.type == pygame.QUIT:
                     pygame.quit()
+                    logging.info("Fenster geschlossen")
                     return False
                 if self.startRect.collidepoint(xMouse, yMouse):
                     self.mouseHover = True
                 else:
                     self.mouseHover = False
                 if event.type == pygame.MOUSEBUTTONUP and self.mouseHover:
+                    logging.info("Restart")
+                    self.scoreInsert = False
                     return True
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_BACKSPACE:
                         self.userText = self.userText[:-1]
                     elif event.key == pygame.K_RETURN:
                         if len(self.userText) > 20:
-                            print("FEHLER")
-                        elif len(self.userText) > 0:
+                            logging.error("Text größer als 20!")
+                        elif len(self.userText) > 0 and self.scoreInsert == False:
+                            self.scoreInsert = True
                             self.highscoreDB.insertScore(self.userText, score)
                             self.highscoreDBContent = self.highscoreDB.returnHighscoreList()
+                        elif self.scoreInsert == True:
+                            logging.error("Score wurde schon in der DB gespeichert")
+                        else:
+                            logging.error("Wort hat die Länge 0")
                     else:
                         if (len(self.userText) < 20):
                             self.userText += event.unicode

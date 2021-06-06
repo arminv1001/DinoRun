@@ -1,3 +1,4 @@
+import logging
 import pygame
 
 from Coin import Coin
@@ -70,7 +71,9 @@ class GamePlayClass(GamePage):
                     self.valScore += 1
                     self.coin.removeCoin()
                     self.increaseDifficulty()
+                    logging.info("Münze eingesammelt\n Score: " + str(self.valScore))
                     return False
+                logging.info("Spieler tot")
                 return True
         return False
 
@@ -124,6 +127,7 @@ class GamePlayClass(GamePage):
             for event in pygame.event.get():
                 # Fenster schließen
                 if event.type == pygame.QUIT:  # Checks if the red button in the corner of the window is clicked
+                    logging.info("Fenster schließen")
                     return False
 
             # Key Steuerung Player

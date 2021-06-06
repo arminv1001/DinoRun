@@ -3,11 +3,15 @@ import pygame
 # todo Kommentare
 # todo Test
 # todo Readme
+# todo Logs
+# todo Requirements
+# todo Ordner Struktur
 
 
 from GameEndClass import GameEndClass
 from GamePlayClass import GamePlayClass
 from GameIntroClass import GameIntroClass
+import logging
 
 if __name__ == "__main__":
 
@@ -20,8 +24,10 @@ if __name__ == "__main__":
     pygame.mixer.music.load("Sounds/theme_music.wav")
     # Musik auskommentieren wenn nicht erwünscht
     pygame.mixer.music.play(-1)
-
+    logging.basicConfig(level=logging.INFO, filename='LogFile/sentiment_scrapper_log.txt', format='%(levelname)s - %(message)s')
     # Objekte instanziieren
+    logging.info("----------------------------")
+    logging.info("GUI Start")
     gameIntro = GameIntroClass(WIDTH, HEIGHT)
     gamePlay = GamePlayClass(WIDTH, HEIGHT, DIFFICULTY)
     gameEnd = GameEndClass(WIDTH, HEIGHT)
