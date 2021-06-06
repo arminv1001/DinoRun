@@ -4,6 +4,7 @@ import pygame
 
 from World import World
 
+
 class GamePage:
     """
     Superklasse für alle Spielseiten (GameIntro, GameEnd, GamePlay)
@@ -28,7 +29,6 @@ class GamePage:
         self.white = (255, 255, 255)
         self.black = (0, 0, 0)
 
-
     def textFormat(self, message, textFont, textSize, textColor):
         """
         Funktion, um ein Text zu erzeugen um dieses Später im Spiel darzustellen.
@@ -44,7 +44,6 @@ class GamePage:
         newFont = pygame.font.Font(textFont, textSize)
         newText = newFont.render(message, 0, textColor)
         return newText
-
 
     @abstractmethod
     def draw(self):

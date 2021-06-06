@@ -7,7 +7,6 @@ class HighScoreDB:
         self.tableName = "HighscoreDB"
         self.conn = self.createDB()
 
-
     def createDB(self):
         """
         Erstellt die benötigte DB, falls sie nicht schon exestiert.
@@ -25,7 +24,6 @@ class HighScoreDB:
         return conn
 
     def insertScore(self, username, score):
-        #TODO Test
         """
         Fügt einen Score in die Datenbank ein.
         :param username: Username des Users
@@ -40,7 +38,6 @@ class HighScoreDB:
         cursor.close()
 
     def returnHighscoreList(self):
-        # TODO Return Kommentar vergewissern
         """
         Gibt die aktuelle Highscore-Tabelle zurück. Sotiert nach Score.
         :return: Inhalt der Highscore Tabelle,

@@ -1,5 +1,3 @@
-import random
-
 import pygame
 from GameObject import GameObject
 
@@ -41,7 +39,7 @@ class Coin(GameObject):
         """
         self.X = self.ResetX
 
-    def place(self,window,fence):
+    def place(self, window, fence):
         """
         Fügt den Coin zum Spielfenster hinzu. Coin darf nicht in einem Zaun platziert werden.
         :param window: Pygame Fenster
@@ -61,4 +59,3 @@ class Coin(GameObject):
                 self.X = self.widthFrame + 10
         if fence.hitbox.colliderect(self.hitbox):
             self.X = self.ResetX
-

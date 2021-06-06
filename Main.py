@@ -1,10 +1,5 @@
 import pygame
 
-
-
-
-
-
 from GameEndClass import GameEndClass
 from GamePlayClass import GamePlayClass
 from GameIntroClass import GameIntroClass
@@ -21,7 +16,8 @@ if __name__ == "__main__":
     pygame.mixer.music.load("Sounds/theme_music.wav")
     # Musik auskommentieren wenn nicht erwünscht
     pygame.mixer.music.play(-1)
-    logging.basicConfig(level=logging.INFO, filename='LogFile/sentiment_scrapper_log.txt', format='%(levelname)s - %(message)s')
+    logging.basicConfig(level=logging.INFO, filename='LogFile/sentiment_scrapper_log.txt',
+                        format='%(levelname)s - %(message)s')
     # Objekte instanziieren
     logging.info("----------------------------")
     logging.info("GUI Start")

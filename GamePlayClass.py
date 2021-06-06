@@ -106,7 +106,7 @@ class GamePlayClass(GamePage):
         self.win.blit(score, (self.WIDTH - (scoreRect[2] + 10), 30))
 
         # Objekte platzieren
-        self.coin.place(self.win,self.fence)
+        self.coin.place(self.win, self.fence)
         self.flyingEnemy.place(self.win)
         self.fence.place(self.win)
         self.man.draw(self.win)

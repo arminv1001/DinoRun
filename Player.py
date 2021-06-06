@@ -1,12 +1,11 @@
 import pygame
-#todo max Slide
-#todo Sterben
-
+# todo max Slide
 
 class Player:
     """
     Klasse für die Protagonistin.
     """
+
     def __init__(self, x, y, step, difficulty):
         """
         Konstruktor
@@ -103,7 +102,7 @@ class Player:
                 window.blit(self.walkRight[self.walkIndex // 6], (self.x, self.y))
         else:
             if self.down:
-                window.blit(self.downStanding,(self.x, self.y))
+                window.blit(self.downStanding, (self.x, self.y))
             else:
                 window.blit(self.standing, (self.x, self.y))
 
@@ -145,7 +144,6 @@ class Player:
         self.downRight = pygame.image.load('Images/SpielerImages/down/downR.png')
         self.downStanding = pygame.image.load('Images/SpielerImages/down/down.png')
 
-
     def drawHitbox(self, window):
         """
         Die Hitbox um den Player wird erstellt
@@ -173,6 +171,3 @@ class Player:
             - Kolliosionserkennung funktioniert?
         """
         return self.rect.colliderect(objRect)
-
-
-

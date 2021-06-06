@@ -15,7 +15,7 @@ class Fence(GameObject):
         widthObj = int(WIDTH / 10)
         heightObj = int(HEIGHT / 10)
         fenceImage = self.loadImage(widthObj, heightObj)
-        Y = (HEIGHT * (1 / 2) + heightObj)+70
+        Y = (HEIGHT * (1 / 2) + heightObj) + 70
         super().__init__(WIDTH, HEIGHT, DIFFICULTY, fenceImage, widthObj, heightObj, Y)
 
     @staticmethod
@@ -32,8 +32,3 @@ class Fence(GameObject):
         fenceImage = pygame.image.load("images/Objekte/fence.png")
         fenceImage = pygame.transform.scale(fenceImage, (widthObj, heightObj))
         return fenceImage
-
-
-
-
-

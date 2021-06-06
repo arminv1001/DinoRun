@@ -6,6 +6,7 @@ class GameObject:
     """
     Superklasse für alle im Spiel vorhandenen Objekte.
     """
+
     def __init__(self, WIDTH, HEIGHT, difficulty, imageObj, widthObj, heightObj, Y):
         """
         Konstruktor
@@ -23,7 +24,7 @@ class GameObject:
         self.heightObj = heightObj
         self.difficulty = difficulty
         self.Y = Y
-        self.ResetX = WIDTH + self.widthObj + 10 + random.randint(10,1000)
+        self.ResetX = WIDTH + self.widthObj + 10 + random.randint(10, 1000)
         self.X = self.ResetX
         self.image = imageObj
         self.hitbox = pygame.Rect(self.X, self.Y, self.widthObj, self.heightObj)

@@ -91,7 +91,6 @@ class GameEndClass(GamePage):
         pygame.display.update()
 
     def loop(self, score):
-        # TODO Logging - Fehler
         """
         Diese Funktion managt:
             -das Game-Over-Bild

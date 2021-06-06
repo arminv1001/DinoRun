@@ -1,6 +1,7 @@
 import pygame
 from GameObject import GameObject
 
+
 class FlyingEnemy(GameObject):
     def __init__(self, WIDTH, HEIGHT, DIFFICULTY):
         """

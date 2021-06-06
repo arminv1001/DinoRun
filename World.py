@@ -1,8 +1,9 @@
 import pygame
 
+
 class World:
 
-    def __init__(self,WIDTH,HEIGHT,difficulty):
+    def __init__(self, WIDTH, HEIGHT, difficulty):
         """
         Erstellt die Spielwelt, bzw den Hintergrund
         :param WIDTH:
@@ -17,7 +18,7 @@ class World:
         self.background2X = self.width
         self.difficulty = difficulty
 
-    def placeBackground(self,window):
+    def placeBackground(self, window):
         """
         Erstellt eine unendlich lange Welt und sorgt dafür das die Kamera automatisch läuft.
         :param window: Pygame Fenster
@@ -29,5 +30,3 @@ class World:
             self.background1X = self.width
         if self.background2X <= (self.width * -1):
             self.background2X = self.width
-
-

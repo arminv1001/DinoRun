@@ -8,6 +8,7 @@ class GameIntroClass(GamePage):
     """
     Klasse für die erste Seite des Spiels.
     """
+
     def __init__(self, WIDTH, HEIGHT):
         """
         Konstruktor fuer die erste Seite.
@@ -16,7 +17,6 @@ class GameIntroClass(GamePage):
         """
         super().__init__(WIDTH, HEIGHT)
         self.mouseHover = False
-
 
     def draw(self):
         """
@@ -43,7 +43,6 @@ class GameIntroClass(GamePage):
         self.win.blit(textTitle, (self.WIDTH / 2 - (titleRect[2] / 2), 50))
 
         pygame.display.update()
-
 
     def loop(self):
         """
